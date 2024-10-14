@@ -8,6 +8,7 @@ Feel free to check them out!
 ** Some codes were made to be within the institutional site, which might cause design issues when opened outside the portal.
 
 Happy exploring!
+
 -------------------------------------------------------------------------------------------------------------------------------
 Olá!
 
