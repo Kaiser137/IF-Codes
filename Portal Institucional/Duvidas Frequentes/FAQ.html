@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSULDEMINAS</title>
+    <style>
+        /* Estilo da resposta */
+        .faq-answer {
+            color: #000000;
+            background-color: #ffffff;
+            border-radius: 0 0 15px 15px;
+            max-height: 0;
+            overflow: hidden;
+            padding: 10px;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            display: none;
+        }
+      
+      	a {
+        	color: blue;  
+      	}
+      
+      	a:hover{
+        	color: #0c6c1c;  
+          	text-decoration: underline;
+      	}
+
+        /* Estilo da lista de perguntas */
+        .faq-list {
+            list-style-type: none;
+            max-width: 100%;
+            background-color: #fff;
+            border: 1px solid #0c6c1c;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Estilo do item de pergunta */
+        .faq-item {
+            background-color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #0c6c1c;
+            position: relative;
+        }
+
+        /* Remove a borda inferior da última pergunta */
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+
+        /* Estilo do item ativo */
+        .faq-item.active {
+            background-color: #0c6c1c;
+        }
+
+        /* Estilo da resposta ativa */
+        .faq-item.active .faq-answer {
+            display: block;
+            max-height: 500px; /* Ajuste para maior responsividade */
+            border-radius: 0 0 15px 15px;
+        }
+
+        /* Estilo da pergunta clicada */
+        .faq-item.active .faq-question,
+        .faq-item.active .seta {
+            color: #fff;
+        }
+
+        /* Estilo da pergunta */
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #0c6c1c;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* Estilo da seta */
+        .seta {
+            color: #0c6c1c;
+            font-size: 20px;
+            transition: transform 0.2s, color 0.2s, opacity 0.2s;
+            opacity: 0.8;
+        }
+
+        /* Estilo da seta ativa */
+        .faq-item.active .seta {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+
+        /* Estilo do rodapé */
+        .faq-footer {
+            max-width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Estilo do anexo */
+        .faq-anexo {
+            font-weight: bold;
+            color: #000000;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo do botão */
+        .faq-link {
+            background-color: #0c6c1c;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Estilo do botão ao passar o mouse */
+        .faq-link:hover {
+            background-color: #ffffff;
+            color: #0c6c1c;
+            border: 1px solid #0c6c1c;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .faq-question {
+                font-size: 16px;
+            }
+
+            .faq-answer {
+                font-size: 14px;
+            }
+
+            .faq-link {
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="faq-list">
+        <li class="faq-item"><span class="faq-question"> Em que cidades s&atilde;o oferecidos cursos no
+                IFSULDEMINAS?&nbsp;<span class="seta">⮟</span> </span>
+            <div class="faq-answer">O IFSULDEMINAS possui campus nas cidades de&nbsp;<a
+                    href="https://portal.cdm.ifsuldeminas.edu.br/">Carmo de Minas</a>,&nbsp;<a
+                    href="https://portal.ifs.ifsuldeminas.edu.br/">Inconfidentes</a>, <a
+                    href="https://portal.mch.ifsuldeminas.edu.br/">Machado</a>, <a
+                    href="https://www.muz.ifsuldeminas.edu.br/">Muzambinho</a>, <a
+                    href="https://portal.pas.ifsuldeminas.edu.br/">Passos</a>, <a
+                    href="https://portal.pcs.ifsuldeminas.edu.br/">Po&ccedil;os de Caldas</a>, <a
+                    href="https://portal.poa.ifsuldeminas.edu.br/">Pouso Alegre</a>&nbsp;e <a
+                    href="https://portal.tco.ifsuldeminas.edu.br/">Tr&ecirc;s Cora&ccedil;&otilde;es</a>.<br /><br /> No
+                Vestibular 2025/1&ordm; semestre h&aacute; vagas dispon&iacute;veis em todos os campi.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Que tipos de cursos presenciais o IFSULDEMINAS est&aacute;
+                oferecendo?&nbsp;&nbsp;<span class="seta">⮟</span> </span>
+            <div class="faq-answer">Para o Vestibular 2024/2&ordm; semestre, o IFSULDEMINAS oferta os cursos superiores
+                Bacharelado em Agronomia e Tecnologia em Cafeicultura, al&eacute;m dos cursos T&eacute;cnicos
+                Subsequentes em Administra&ccedil;&atilde;o, Agropecu&aacute;ria, Contabilidade e Seguran&ccedil;a do
+                Trabalho.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Como fa&ccedil;o para estudar no IFSULDEMINAS?&nbsp;&nbsp;<span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer">Para o Vestibular 2025/1&ordm; semestre, o IFSULDEMINAS oferta os cursos superiores
+                presenciais em: Bacharelado em Administra&ccedil;&atilde;o, Bacharelado em Agronomia, Bacharelado em
+                Ci&ecirc;ncia da Computa&ccedil;&atilde;o, Bacharelado em Ci&ecirc;ncia e Tecnologia de Alimentos,
+                Bacharelado em Engenharia Ambiental, Bacharelado em Engenharia Agron&ocirc;mica, Bacharelado em
+                Engenharia de Agrimensura e Cartogr&aacute;fica, Bacharelado em Engenharia de Alimentos, Bacharelado em
+                Engenharia Civil, Bacharelado em Engenharia de Computa&ccedil;&atilde;o, Bacharelado em Engenharia
+                Qu&iacute;mica, Bacharelado em Medicina Veterin&aacute;ria, Bacharelado em Sistemas de
+                Informa&ccedil;&atilde;o, Bacharelado em Zootecnia, Licenciatura em Ci&ecirc;ncias Biol&oacute;gicas,
+                Licenciatura em Hist&oacute;ria, Licenciatura em Matem&aacute;tica, Licenciatura em Pedagogia,
+                Licenciatura em Qu&iacute;mica, Tecnologia em Design de Moda, Tecnologia em Gest&atilde;o Ambiental e
+                Tecnologia em Redes de Computadores. J&aacute; nos cursos t&eacute;cnicos subsequentes presenciais,
+                s&atilde;o oferecidos os cursos: T&eacute;cnico em Administra&ccedil;&atilde;o, T&eacute;cnico em
+                Agropecu&aacute;ria, T&eacute;cnico em Contabilidade, T&eacute;cnico em Edifica&ccedil;&otilde;es,
+                T&eacute;cnico em Enfermagem, T&eacute;cnico em Eletrot&eacute;cnica, T&eacute;cnico em Mec&acirc;nica,
+                T&eacute;cnico em Qu&iacute;mica e T&eacute;cnico em Seguran&ccedil;a do Trabalho. Nos cursos
+                t&eacute;cnicos integrados ao ensino m&eacute;dio presenciais temos a oferta para T&eacute;cnico em
+                Administra&ccedil;&atilde;o, T&eacute;cnico em Agropecu&aacute;ria, T&eacute;cnico em Alimentos,
+                T&eacute;cnico em Design Gr&aacute;fico, T&eacute;cnico em Edifica&ccedil;&otilde;es, T&eacute;cnico em
+                Eletroeletr&ocirc;nica, T&eacute;cnico em Geoprocessamento, T&eacute;cnico em Inform&aacute;tica,
+                T&eacute;cnico em Mec&acirc;nica, T&eacute;cnico em Meio Ambiente, T&eacute;cnico em
+                Produ&ccedil;&atilde;o de Moda e T&eacute;cnico em Qu&iacute;mica.<br /><br /> No Vestibular
+                2025/1&ordm; semestre ser&aacute; ofertada, pela primeira vez, a modalidade "t&eacute;cnico concomitante
+                presencial", que ter&aacute; dispon&iacute;vel o curso T&eacute;cnico em Meio Ambiente.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Vai ter oferta de curso EaD no Vestibular 2025/1&ordm;
+                semestre? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Sim. Nesta edi&ccedil;&atilde;o ser&atilde;o oferecidos os cursos superiores EaD em:
+                Licenciatura em Pedagogia e Licenciatura em Letras-Portugu&ecirc;s</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Como fa&ccedil;o para estudar no IFSULDEMINAS?? <span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer">No Vestibular 2025/1&ordm; semestre o processo ser&aacute;:<br />
+                <div style="margin-left: 15px;"><a
+                        href="index.php/institucional-geral/6390-vestibular-2025-1-cursos-tecnicos-subsequentes">Curso
+                        T&eacute;cnico Subsequente:</a> (para candidatos que j&aacute; conclu&iacute;ram o Ensino
+                    M&eacute;dio): o ingresso ocorrer&aacute; por meio de Prova Presencial (para enfermagem) e sorteio
+                    (para demais cursos);<br /><br /></div>
+                <div style="margin-left: 15px;"><a
+                        href="index.php/institucional-geral/6391-vestibular-2025-1-cursos-tecnicos-integrados">Curso
+                        T&eacute;cnico Integrado:</a> (para candidatos que querem cursar o Ensino M&eacute;dio junto com
+                    um T&eacute;cnico): o ingresso ocorrer&aacute; por meio de uma prova com quest&otilde;es objetivas
+                    das disciplinas do Ensino M&eacute;dio, abordando conte&uacute;dos indicados na BNCC - Base Nacional
+                    Comum Curricular - e uma Reda&ccedil;&atilde;o. A prova presencial ocorrer&aacute; no dia
+                    08/12/2024;<br /><br /></div>
+                <div style="margin-left: 15px;"><a
+                        href="index.php/institucional-geral/6392-vestibular-2025-1-curso-tecnico-concomitante">Curso
+                        T&eacute;cnico Concomitante</a> (para os candidatos que cursam o Ensino M&eacute;dio e querem
+                    cursar o T&eacute;cnico ao mesmo tempo): o ingresso ocorrer&aacute; por meio de Sorteio;<br /><br />
+                </div>
+                <div style="margin-left: 15px;"><a
+                        href="index.php/institucional-geral/6389-vestibular-2025-1-cursos-superiores">Curso Superior
+                        Presencial e EaD:</a> (para candidatos que j&aacute; conclu&iacute;ram o Ensino M&eacute;dio): o
+                    ingresso ocorrer&aacute; por meio de uma prova com quest&otilde;es objetivas das disciplinas do
+                    Ensino M&eacute;dio, abordando conte&uacute;dos indicados na BNCC - Base Nacional Comum Curricular -
+                    e uma Reda&ccedil;&atilde;o ou utilizando a nota do Enem, sendo v&aacute;lidas as notas obtidas nas
+                    edi&ccedil;&otilde;es 2016 at&eacute; 2023. O candidato poder&aacute; optar entre realizar a prova
+                    presencial (no dia 08/12/2024) ou usar a nota que obteve no Exame Nacional do Ensino M&eacute;dio
+                    (Enem);<br /><br /></div>
+                Todas as formas de ingresso s&atilde;o regidas por editais, publicados previamente no site do
+                IFSULDEMINAS Reitoria e tamb&eacute;m nos sites dos campi de interesse.
+            </div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> O que s&atilde;o a&ccedil;&otilde;es afirmativas? <span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer">A&ccedil;&otilde;es afirmativas s&atilde;o pol&iacute;ticas sociais de combate a
+                discrimina&ccedil;&otilde;es &eacute;tnicas, raciais, religiosas, de g&ecirc;nero ou de casta, para
+                promover a participa&ccedil;&atilde;o de minorias no processo pol&iacute;tico, no acesso &agrave;
+                educa&ccedil;&atilde;o, sa&uacute;de, emprego, bens materiais, entre outros. O IFSULDEMINAS adota 50%
+                (cinquenta por cento) do total das vagas &agrave; inclus&atilde;o social via a&ccedil;&atilde;o
+                afirmativa voltada para candidatos que tenham cursado integralmente o Ensino Fundamental ou Ensino
+                M&eacute;dio em escolas p&uacute;blicas, respeitando-se a propor&ccedil;&atilde;o m&iacute;nima de
+                autodeclarados pretos, pardos, ind&iacute;genas e quilombolas, do &uacute;ltimo censo do Instituto
+                Brasileiro de Geografia e Estat&iacute;stica (IBGE) para o estado de Minas Gerais, bem como os
+                crit&eacute;rios de renda previstos em legisla&ccedil;&atilde;o.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Todos os cursos do IFSULDEMINAS s&atilde;o gratuitos? <span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer">Como uma Institui&ccedil;&atilde;o Federal, todos os cursos ofertados s&atilde;o
+                gratuitos e de qualidade.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> O que &eacute; curso t&eacute;cnico subsequente
+                (p&oacute;s-Ensino M&eacute;dio)?<span class="seta">⮟</span> </span>
+            <div class="faq-answer">O <a
+                    href="index.php/institucional-geral/6390-vestibular-2025-1-cursos-tecnicos-subsequentes">Curso
+                    T&eacute;cnico Subsequente</a> tem o objetivo de capacitar o aluno com conhecimentos te&oacute;ricos
+                e pr&aacute;ticos nas diversas atividades do setor produtivo. Acesso imediato ao mercado de trabalho
+                &eacute; um dos prop&oacute;sitos dos que buscam este curso, al&eacute;m da perspectiva de
+                requalifica&ccedil;&atilde;o ou mesmo reinser&ccedil;&atilde;o no setor produtivo. Estes cursos
+                s&atilde;o voltados para alunos que j&aacute; conclu&iacute;ram o Ensino M&eacute;dio e desejam a
+                capacita&ccedil;&atilde;o t&eacute;cnica, em diferentes &aacute;reas do conhecimento.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> O que &eacute; um curso t&eacute;cnico Integrado? <span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer">O <a
+                    href="index.php/institucional-geral/6391-vestibular-2025-1-cursos-tecnicos-integrados">Curso
+                    T&eacute;cnico Integrado</a> &eacute; voltado para alunos que, com uma &uacute;nica
+                matr&iacute;cula, ir&atilde;o realizar a forma&ccedil;&atilde;o b&aacute;sica (por meio das disciplinas
+                do Ensino M&eacute;dio) e t&eacute;cnica (por meio de disciplinas t&eacute;cnicas de diferentes
+                &aacute;reas), reunindo, assim, os conhecimentos do ensino m&eacute;dio &agrave;s compet&ecirc;ncias da
+                educa&ccedil;&atilde;o profissional.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> O IFSULDEMINAS tem vaga aberta para o meu curso de interesse?
+                <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Os cursos do IFSULDEMINAS s&atilde;o ofertados conforme demanda da sociedade. As
+                vagas normalmente s&atilde;o disponibilizadas semestralmente, por meio de <a
+                    href="vestibular-proen/">vestibular.</a></div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Quero fazer um curso t&eacute;cnico, por&eacute;m n&atilde;o
+                moro na cidade, a Institui&ccedil;&atilde;o possui alojamento? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Alguns campi da institui&ccedil;&atilde;o (Inconfidentes, Machado e Muzambinho)
+                oferecem alojamento para uma parte de seus acad&ecirc;micos, ap&oacute;s um processo de
+                avalia&ccedil;&atilde;o das condi&ccedil;&otilde;es socioecon&ocirc;micas e da renda bruta familiar dos
+                interessados.<br /><br />
+                <div style="margin-left: 15px;">No Campus Inconfidentes o setor respons&aacute;vel pelo alojamento
+                    &eacute; a Coordena&ccedil;&atilde;o Geral de Assist&ecirc;ncia ao Educando, para obter mais
+                    informa&ccedil;&otilde;es, voc&ecirc; pode entrar em contato pelo telefone (35)
+                    3464-9127;<br /><br /></div>
+                <div style="margin-left: 15px;">No Campus Machado o coordenador &eacute; o S&eacute;rgio Luiz Santana de
+                    Almeida - Coordenador Geral de Assist&ecirc;ncia ao Educando - <a
+                        href="mailto:sergio.santana@ifsuldeminas.edu.br">sergio.santana@ifsuldeminas.edu.br</a>;<br /><br />
+                </div>
+                <div style="margin-left: 15px;">No Campus Muzambinho o setor &eacute; a Se&ccedil;&atilde;o de
+                    Orienta&ccedil;&atilde;o Educacional, onde voc&ecirc; pode solicitar mais informa&ccedil;&otilde;es
+                    pelo telefone (35) 3571 5051;<br /><br /></div>
+                <div style="margin-left: 15px;"><strong>Crit&eacute;rios para solicitar alojamento</strong><br /><br />
+                </div>
+                <div style="margin-left: 30px;"><strong>a)</strong> estar regularmente matriculado em um dos cursos do
+                    IFSULDEMINAS;<br /><br /></div>
+                <div style="margin-left: 30px;"><strong>b)</strong> n&atilde;o possuir aux&iacute;lio moradia do
+                    Programa Aux&iacute;lio Financeiro;<br /><br /></div>
+                <div style="margin-left: 30px;"><strong>c)</strong> realizar sua inscri&ccedil;&atilde;o dentro do prazo
+                    e respeitar o processo estabelecido pelos editais;<br /><br /></div>
+                <div style="margin-left: 30px;"><strong>d)</strong> formalizar a inscri&ccedil;&atilde;o atrav&eacute;s
+                    do preenchimento da Ficha de Inscri&ccedil;&atilde;o e apresentar a documenta&ccedil;&atilde;o
+                    referente &agrave; situa&ccedil;&atilde;o socioecon&ocirc;mica da fam&iacute;lia;<br /><br /></div>
+                <div style="margin-left: 30px;"><strong>e)</strong> comprovar a necessidade de obten&ccedil;&atilde;o de
+                    tal benef&iacute;cio, mediante comprova&ccedil;&atilde;o da situa&ccedil;&atilde;o de
+                    vulnerabilidade social, por meio de demonstrativos de renda bruta familiar;<br /><br /></div>
+                A secretaria do campus em que voc&ecirc; deseja estudar sempre estar&aacute; equipada com
+                informa&ccedil;&otilde;es atualizadas a respeito das vagas e crit&eacute;rios para participar do
+                programa de alojamento
+            </div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Qual a diferen&ccedil;a entre: Bacharelado, Tecnologia e
+                Licenciatura? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">
+                <div style="margin-left: 15px;"><a href="index.php/graduacao/284-bacharelado">Bacharelado</a> &ndash; O
+                    profissional com o grau de bacharel pode atuar de maneira mais ampla no mercado de trabalho, pois os
+                    cursos desta modalidade s&atilde;o mais generalistas, que confere ao diplomado compet&ecirc;ncias em
+                    determinado campo do saber para o exerc&iacute;cio de atividade profissional, acad&ecirc;mica ou
+                    cultural.<br /><br /></div>
+                <div style="margin-left: 15px;"><a href="index.php/graduacao/283-licenciatura">Licenciatura</a> &ndash;
+                    curso superior que confere ao diplomado compet&ecirc;ncias para atuar como professor na
+                    educa&ccedil;&atilde;o b&aacute;sica.<br /><br /></div>
+                <div style="margin-left: 15px;"><a href="index.php/graduacao/282-tecnologos">Tecnol&oacute;gico</a>
+                    &ndash; curso superior de forma&ccedil;&atilde;o especializada em &aacute;reas cient&iacute;ficas e
+                    tecnol&oacute;gicas, que confere ao diplomado compet&ecirc;ncias para atuar em &aacute;reas
+                    profissionais espec&iacute;ficas, caracterizadas por eixos tecnol&oacute;gicos.</div>
+            </div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Qual a diferen&ccedil;a entre cursos t&eacute;cnicos e
+                tecnol&oacute;gicos? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">
+                <div style="margin-left: 15px;"><strong>Curso t&eacute;cnico</strong>: Os cursos t&eacute;cnicos
+                    oferecem uma vis&atilde;o ampla e r&aacute;pida de diversas &aacute;reas dentro de um curso
+                    espec&iacute;fico, e tem a finalidade de incluir o aluno rapidamente no mercado de trabalho.
+                    &Eacute; ideal para quem quer come&ccedil;ar no mercado de trabalho ou se reciclar.<br /><br />
+                </div>
+                <div style="margin-left: 15px;"><strong>Curso superior de tecnologia</strong>: &eacute; um curso de
+                    gradua&ccedil;&atilde;o com dura&ccedil;&atilde;o menor que os do tipo bacharelado ou licenciatura.
+                    Os tecn&oacute;logos obt&ecirc;m especializa&ccedil;&atilde;o profissional em &aacute;reas
+                    espec&iacute;ficas orientadas ao mercado de trabalho. &Eacute; preciso ter conclu&iacute;do o Ensino
+                    M&eacute;dio para curs&aacute;-lo.</div>
+            </div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Posso estar matriculado ao mesmo tempo em duas
+                institui&ccedil;&otilde;es de ensino superior? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">A Lei Federal n&ordm; 12.089, de 11 de novembro de 2009, pro&iacute;be que uma mesma
+                pessoa ocupe, na condi&ccedil;&atilde;o de estudante, duas vagas, simultaneamente, no curso de
+                gradua&ccedil;&atilde;o, em institui&ccedil;&otilde;es p&uacute;blicas de ensino superior em todo o
+                territ&oacute;rio nacional. (Fonte: Lei Federal n&ordm; 12.089, de 11 de novembro de 2009). No entanto,
+                &eacute; importante consultar no edital do processo seletivo quais as regras estabelecidas para efetivar
+                uma matr&iacute;cula, quando classificado.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> O que &eacute; SISU? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Pelo <a href="https://acessounico.mec.gov.br/sisu">Sistema de Sele&ccedil;&atilde;o
+                    Unificada (SISU)</a>, gerenciado pelo MEC (Minist&eacute;rio da Educa&ccedil;&atilde;o), os
+                candidatos que participaram do Exame Nacional do Ensino M&eacute;dio (ENEM) podem concorrer a vagas
+                ofertadas em institui&ccedil;&otilde;es p&uacute;blicas de ensino superior participantes do SISU. O
+                IFSULDEMINAS &eacute; uma institui&ccedil;&atilde;o p&uacute;blica de ensino superior participante do
+                SISU, que disponibiliza 70% das vagas para os vestibulandos que escolhem esta modalidade de ingresso.
+            </div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> O que &eacute; e como funciona a Assist&ecirc;ncia Estudantil?
+                <span class="seta">⮟</span> </span>
+            <div class="faq-answer">A assist&ecirc;ncia estudantil &eacute; destinada a alunos que apresentam quadro de
+                vulnerabilidade social e que estejam regularmente matriculados no IFSULDEMINAS. Tanto alunos de cursos
+                presenciais, quanto os &agrave; dist&acirc;ncia podem receber aux&iacute;lio, desde que se enquadrem nos
+                quesitos de vulnerabilidade social, apresentando a documenta&ccedil;&atilde;o exigida no edital que
+                ir&aacute; participar.<br /><br /> <a
+                    href="index.php/pro-reitoria-ensino/editais-proen/162-assistencia-estudantil">S&atilde;o
+                    lan&ccedil;ados anualmente editais para identificar e selecionar estudantes</a> que permanecem em
+                situa&ccedil;&atilde;o de vulnerabilidade socioecon&ocirc;mica e atendam aos crit&eacute;rios para
+                concess&atilde;o de aux&iacute;lios no ano letivo em vigor.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Gostaria de conseguir o certificado do ensino m&eacute;dio pelo
+                ENEM, e a entidade certificadora IFSULDEMINAS, como devo proceder? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">A Pr&oacute; Reitoria de Ensino &eacute; o setor respons&aacute;vel em dirimir
+                d&uacute;vidas sobre este assunto, voc&ecirc; pode <a
+                    href="index.php/proen/3232-encceja-2019-informacoes">acessar aqui</a> para saber mais.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Perdi o prazo de pagamento da GRU do vestibular, posso imprimir
+                a segunda via? Voc&ecirc;s podem me enviar uma segunda via? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">De acordo com cada edital, pode-se imprimir a GRU, acessando a sua
+                inscri&ccedil;&atilde;o pelo sistema, at&eacute; a data limite publicada oficialmente no edital, e
+                efetuar o pagamento respeitando o hor&aacute;rio banc&aacute;rio. Ap&oacute;s o prazo limite para
+                impress&atilde;o e pagamento da GRU, o Instituto n&atilde;o enviar&aacute; a guia, ou
+                disponibilizar&aacute; conta banc&aacute;ria para dep&oacute;sito. Respeitando os prazos previamente
+                publicados e o princ&iacute;pio da Igualdade e isonomia.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Quais documentos s&atilde;o necess&aacute;rios para minha
+                matr&iacute;cula e quando come&ccedil;a as aulas? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">A documenta&ccedil;&atilde;o exigida para cada campus e curso encontra-se indicado
+                no edital, no item &ldquo;Solicita&ccedil;&atilde;o de matr&iacute;cula&rdquo; podendo o interessado
+                tamb&eacute;m entrar em contato com a secretaria de cada campus para saber mais
+                informa&ccedil;&otilde;es. A data de in&iacute;cio das aulas tamb&eacute;m &eacute; uma
+                informa&ccedil;&atilde;o que deve ser apurada pela secretaria do campus que disponibilizar&aacute; o
+                curso.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Minha pergunta n&atilde;o consta neste local, como fa&ccedil;o?
+                <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Mande a sua pergunta no seguinte contato: <a
+                    href="mailto:vestibular@ifsuldeminas.edu.br">vestibular@ifsuldeminas.edu.br</a> ou pelo telefone
+                (35) 3449 6189 (Reitoria).</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Se eu optar pelo ingresso pela Nota do ENEM, como o
+                IFSULDEMINAS vai saber minha maior nota do ENEM? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">O sistema de vestibulares puxa as notas direto do INEP, portanto, fique tranquilo,
+                que a nota considerada ser&aacute; a maior. Se algo ocorrer de errado, o candidato pode recorrer e
+                indicar a edi&ccedil;&atilde;o que deveria ter sido considerada, que procederemos &agrave;
+                corre&ccedil;&atilde;o.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Posso participar de mais de uma forma de ingresso para o
+                superior, por exemplo ENEM e PROVA? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Sim! Fica a crit&eacute;rio do candidato optar por uma ou mais de uma modalidade de
+                ingresso. Por&eacute;m, neste caso, devem ser emitidas e pagas duas GRU&rsquo;s para pagamento de taxa,
+                uma para cada inscri&ccedil;&atilde;o.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Eu faltei no ENEM em alguma edi&ccedil;&atilde;o, mas em outra
+                eu fiz a prova toda, isso me prejudica? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">N&atilde;o. Ser&aacute; selecionada a nota da edi&ccedil;&atilde;o em que o
+                candidato obteve melhor desempenho. Ent&atilde;o, onde houver falta, ser&aacute; descartado.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Posso somar minha nota da prova com o ENEM? <span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer">N&atilde;o. Cada forma de ingresso &eacute; isolada e n&atilde;o existe essa
+                possibilidade.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> N&atilde;o tenho condi&ccedil;&otilde;es de pagar a taxa de
+                inscri&ccedil;&atilde;o, e agora? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Os candidatos podem pedir isen&ccedil;&atilde;o da taxa de inscri&ccedil;&atilde;o
+                no prazo previsto pelo edital. Caso perca o prazo, para os cursos Superiores a concorr&ecirc;ncia pelo
+                SISU &eacute; gratuita e para os cursos T&eacute;cnicos Subsequentes tamb&eacute;m n&atilde;o
+                ser&aacute; cobrada taxa de inscri&ccedil;&atilde;o para o processo seletivo 2025/1.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> O que &eacute; o N&uacute;mero de Inscri&ccedil;&atilde;o
+                Externa que aparece para mim? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">&Eacute; o n&uacute;mero da sua inscri&ccedil;&atilde;o mais recente no ENEM.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> N&atilde;o consigo acessar o gov.br, e agora? <span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer"><a href="https://www.gov.br/pt-br/contas-e-senhas/recuperacao-de-senha">Clique aqui
+                    para saber mais sobre recupera&ccedil;&atilde;o de senha da plataforma gov.br</a>, que nesse post
+                tem um item s&oacute; dedicado a ele.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Cancelei minha inscri&ccedil;&atilde;o, e agora n&atilde;o
+                consigo fazer mais? <span class="seta">⮟</span> </span>
+            <div class="faq-answer">Consegue sim, basta enviar e-mail para <a
+                    href="mailto:vestibular@ifsuldeminas.edu.br">vestibular@ifsuldeminas.edu.br</a>, que iremos reativar
+                sua inscri&ccedil;&atilde;o.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> Errei a minha inscri&ccedil;&atilde;o, e agora? <span
+                    class="seta">⮟</span> </span>
+            <div class="faq-answer">Em quase todos os dados, basta acessar o <a
+                    href="https://inscricaovestibular.ifsuldeminas.edu.br/">site de inscri&ccedil;&atilde;o</a>, entrar
+                com seu usu&aacute;rio gov.br, clicar em "Acompanhar/alterar inscri&ccedil;&atilde;o" e corrigir. Se
+                n&atilde;o conseguir, envie e-mail para <a
+                    href="mailto:vestibular@ifsuldeminas.edu.br">vestibular@ifsuldeminas.edu.br</a>.</div>
+        </li>
+        <li class="faq-item"><span class="faq-question"> N&atilde;o encontro as profiss&otilde;es corretas para informar
+                na inscri&ccedil;&atilde;o, e agora? <span class="seta">⮟</span> </span>
+            <div class="faq-answer" style="margin-bottom: 0px;">As profiss&otilde;es disponibilizadas nas
+                inscri&ccedil;&otilde;es s&atilde;o determinadas pelo portal Gov.br e o IFSULDEMINAS n&atilde;o tem como
+                alterar ou corrigir. Escolha aquela que mais se aproxime da profiss&atilde;o, ou a op&ccedil;&atilde;o
+                &ldquo;outros&rdquo; e prossiga, essa informa&ccedil;&atilde;o n&atilde;o interfere na
+                inscri&ccedil;&atilde;o.</div>
+        </li>
+    </ul>
+
+    <div class="faq-footer"><span class="faq-anexo">ANEXO:</span> <a
+            href="attachments/article/6023/RECUPERA%C3%87%C3%83O%20DE%20SENHA%20GOV-BR.pdf" class="faq-link">Como
+            Recuperar Senha do gov br</a>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var items = document.querySelectorAll(".faq-item");
+
+        items.forEach(function(item) {
+            item.addEventListener("click", function() {
+                // Fechar todas as respostas abertas
+                items.forEach(function(otherItem) {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove("active");
+                        otherItem.querySelector(".faq-answer").style.maxHeight = "0";
+                        setTimeout(() => {
+                            otherItem.querySelector(".faq-answer").style.display = "none";
+                        }, 300);
+                    }
+                });
+
+                // Alternar a visibilidade da resposta atual
+                item.classList.toggle("active");
+                var currentAnswer = item.querySelector(".faq-answer");
+                if (item.classList.contains("active")) {
+                    currentAnswer.style.display = "block";
+                    currentAnswer.style.maxHeight = currentAnswer.scrollHeight + "px";
+                } else {
+                    currentAnswer.style.maxHeight = "0";
+                    setTimeout(() => {
+                        currentAnswer.style.display = "none";
+                    }, 300);
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página dos Concursos Públicos, Processos Seletivos e Estágios (CPSE)</title>
+    <style>
+        body {
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            background-color: #0c6c1c;
+            color: #fff;
+            padding: 20px;
+            margin: 0 -20px 0 -20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .section {
+            border: 2px solid #0c6c1c;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+        }
+
+        .section h3 {
+            color: #0c6c1c;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .section a {
+            color: #0c6c1c;
+            text-decoration: none;
+        }
+
+        .section a:hover {
+            text-decoration: underline;
+        }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: auto;
+            display: block;
+            transition: transform 0.2s;
+        }
+
+        .section img:hover {
+            transform: scale(1.05);
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .button-container.center-1 a,
+        .button-container.center-2 a {
+            flex: 1 1 50%;
+        }
+
+        .button-container.center-1 {
+            justify-content: center;
+        }
+
+        .button-container.center-2 {
+            justify-content: center;
+        }
+
+        .button-container a {
+            flex: 1 1 50%;
+            margin: 10px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+
+            .section p,
+            .team-list div {
+                font-size: 14px;
+            }
+
+            .social-media img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .button-container a {
+                flex: 1 1 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <img src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Progep_-_Concursos/BANNER_750x195_INSTITUCIONAL_CONCURSO.png"
+        alt="Banner trabalhe conosco">
+    <div class="content">
+        <div class="section">
+            <div style="font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;">
+                Acompanhe as vagas abertas no Instituto Federal do Sul de Minas Gerais (IFSULDEMINAS). São oportunidades
+                para docentes e técnicos administrativos (via Concurso Público) e para professores substitutos e
+                estagiários (por meio de Processo Seletivo), com diversas áreas de formação, para atuar na Reitoria e
+                nos Campi da Instituição. <strong>Clique nos botões</strong> abaixo para conferir os editais abertos e
+                em andamento:
+            </div>
+            <div class="button-container" style="justify-content: center; gap: 30px;">
+                <div><a href="index.php/estagio-remunerado-nao-obrigatorio-2/concurso-para-docentes/abertos"
+                        title="clique para acessar os editais de sele&ccedil;&atilde;o de docente efetivo abertos"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Progep_-_Concursos/Banner_300_docentes.png"
+                            alt="Banner 300 docentes" style="border: 2px solid #0c6c1c;" /></a></div>
+
+                <div><a href="index.php/estagio-remunerado-nao-obrigatorio-2/concurso-para-tec-adm/abertos"
+                        title="clique para acessar os editais de sele&ccedil;&atilde;o de t&eacute;cnicos administrativos abertos"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Progep_-_Concursos/Banner_300_tecnicos.png"
+                            alt="Banner 300 tecnicos" style="border: 2px solid #0c6c1c;" /></a></div>
+            </div>
+            <div class="button-container" style="justify-content: center; gap: 30px;">
+                <div>
+                    <a href="index.php/processos-seletivos/professor-substituto/abertos"
+                        title="clique para acessar os editais de contrata&ccedil;&atilde;o de professor substituto abertos"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Progep_-_Concursos/Modelo_banner_Professor_Substituto_1.png"
+                            alt="Modelo banner Professor Substituto 1" style="border: 2px solid #0c6c1c;" /></a>
+                </div>
+                <div>
+                    <a href="index.php/estagio-remunerado-nao-obrigatorio/aberto-estagio-remunerado-nao-obrigatorio"
+                        title="clique para acessar os editais de sele&ccedil;&atilde;o de estagi&aacute;rios abertos"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Progep_-_Concursos/Modelo_banner_300x200_Est%C3%A1gio_2024.png"
+                            alt="Modelo banner 300x200 Est&aacute;gio 2024" style="border: 2px solid #0c6c1c;" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

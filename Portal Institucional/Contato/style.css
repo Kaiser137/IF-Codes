@@ -1,0 +1,135 @@
+body {
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    background-color: #0c6c1c;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    margin: 0 -20px 20px -20px;
+    box-sizing: border-box;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #0c6c1c;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.contact-container:hover {
+    transform: scale(1.02);
+}
+
+.contact-item {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.contact-item span {
+    font-weight: bold;
+}
+
+.contact-item p {
+    margin: 0;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.buttons-container a {
+    display: block;
+    margin: 10px;
+}
+
+.social-media-container {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.social-media-container h3 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #0c6c1c;
+}
+
+.social-media-container .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.social-media-container .social-links a {
+    display: block;
+    margin: 0 10px;
+}
+
+.social-media-container .social-links img {
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    border-radius: 15px;
+}
+
+.footer-image {
+    display: block;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.footer-image img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.footer-image img:hover {
+    transform: scale(1.02);
+}
+
+a {
+    transition: transform 0.2s;
+}
+
+a:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 599px) {
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .buttons-container a {
+        margin: 10px 0;
+    }
+
+    .social-media-container .social-links {
+        gap: 20px;
+    }
+
+    .social-links img {
+        width: 50px;
+        height: 50px;
+    }
+}

@@ -1,0 +1,118 @@
+body {
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    background-color: #0c6c1c;
+    color: #fff;
+    padding: 20px;
+    margin: 0 -20px 0 -20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.section {
+    border: 2px solid #0c6c1c;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.section:hover {
+    transform: scale(1.02);
+}
+
+.section h3 {
+    color: #0c6c1c;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.section p {
+    font-size: 22px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.section a {
+    color: #0c6c1c;
+    text-decoration: none;
+}
+
+.section a:hover {
+    text-decoration: underline;
+}
+
+.section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.section img:hover {
+    transform: scale(1.05);
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.button-container.center-1 a,
+.button-container.center-2 a {
+    flex: 1 1 50%;
+}
+
+.button-container.center-1 {
+    justify-content: center;
+}
+
+.button-container.center-2 {
+    justify-content: center;
+}
+
+.button-container a {
+    flex: 1 1 50%;
+    margin: 10px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+
+    .section p,
+    .team-list div {
+        font-size: 14px;
+    }
+
+    .social-media img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .button-container a {
+        flex: 1 1 100%;
+        margin: 5px 0;
+    }
+}

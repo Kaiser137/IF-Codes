@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campi IFSULDEMINAS</title>
+    <style>
+        body {
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            background-color: #0c6c1c;
+            color: #fff;
+            padding: 15px 20px;
+            margin-top: -50px;
+            text-align: center;
+            margin: 0 -20px 20px -20px;
+            box-sizing: border-box;
+        }
+
+        .campus-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .campus {
+            background-color: #fff;
+            border: 2px solid #0c6c1c;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: calc(50% - 20px);
+            box-sizing: border-box;
+            text-align: center;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .campus:hover {
+            transform: scale(1.05);
+        }
+
+        .campus h3 {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .campus img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .campus:hover img {
+            transform: scale(1.1);
+        }
+
+        .campus div {
+            text-align: center;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .campus a {
+            color: #0c6c1c;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .campus a:hover {
+            text-decoration: underline;
+        }
+
+        .map-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            max-width: 750px;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .campus {
+                width: 100%;
+                min-height: auto;
+            }
+
+            .campus div,
+            .campus a {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h2 class="page-title">Conheça os Nossos Campi</h2>
+        <div class="campus-container">
+            <div class="campus">
+                <h3>Inconfidentes</h3>
+                <a href="https://portal.ifs.ifsuldeminas.edu.br/" target="_blank"
+                    title="Link para o portal do campus Inconfidentes">
+                    <img src="images/os_campi/1_Inconfidentes.jpg" alt="1 Inconfidentes">
+                </a>
+                <div>Endereço: Praça Tiradentes, nº 416</div>
+                <div>Bairro: Centro/ MG</div>
+                <div>CEP: 37.576-000</div>
+                <div>Tel: (35) 3464-1200</div>
+                <div>E-mail: <br><a
+                        href="mailto:gabinete.inconfidentes@ifsuldeminas.edu.br">gabinete.inconfidentes@ifsuldeminas.edu.br</a>
+                </div>
+            </div>
+            <div class="campus">
+                <h3>Machado</h3>
+                <a href="https://portal.mch.ifsuldeminas.edu.br/" target="_blank"
+                    title="Link que direciona para a página do Campus Machado">
+                    <img src="images/os_campi/1_Machado.jpg" alt="1 Machado">
+                </a>
+                <div>Endereço: Rod. Machado - Paraguaçu, km 03</div>
+                <div>Bairro: Santo Antônio/ MG</div>
+                <div>CEP: 37.750-000</div>
+                <div>Tel: (35) 3295-9700</div>
+                <div>E-mail: <br><a
+                        href="mailto:gabinete.machado@ifsuldeminas.edu.br">gabinete.machado@ifsuldeminas.edu.br</a>
+                </div>
+            </div>
+            <div class="campus">
+                <h3>Muzambinho</h3>
+                <a href="http://www.muz.ifsuldeminas.edu.br/">
+                    <img src="images/os_campi/1_Muzambinho.jpg" alt="1 Muzambinho">
+                </a>
+                <div>Endereço: Estrada de Muzambinho, km 35</div>
+                <div>Bairro: Morro Preto/MG</div>
+                <div>CEP: 37.890-000</div>
+                <div>Caixa Postal nº 02</div>
+                <div>Tel: (35) 3571-5051</div>
+                <div>E-mail: <br><a href="mailto:gabinete@muz.ifsuldeminas.edu.br">gabinete@muz.ifsuldeminas.edu.br</a>
+                </div>
+            </div>
+            <div class="campus">
+                <h3>Passos</h3>
+                <a href="https://portal.pas.ifsuldeminas.edu.br/"
+                    title="Link que direciona para a página do Campus Passos">
+                    <img src="images/os_campi/1_Passos.jpg" alt="1 Passos">
+                </a>
+                <div>Endereço: Rua da Penha, nº 290</div>
+                <div>Bairro Penha II/ MG</div>
+                <div>CEP: 37.903-070</div>
+                <div>Tel: (35) 3526-4856</div>
+                <div>E-mail: <br><a
+                        href="mailto:gabinete.passos@ifsuldeminas.edu.br">gabinete.passos@ifsuldeminas.edu.br</a></div>
+            </div>
+            <div class="campus">
+                <h3>Poços de Caldas</h3>
+                <a href="https://portal.pcs.ifsuldeminas.edu.br/"
+                    title="Link que direciona para o portal do Campus Poços de Caldas">
+                    <img src="images/os_campi/1_Poços_de_Caldas.jpg" alt="1 Poços de Caldas">
+                </a>
+                <div>Endereço: Av. Dirce Pereira Rosa, nº 300</div>
+                <div>Bairro: Jardim Esperança/MG</div>
+                <div>CEP: 37.713-100</div>
+                <div>Tel: (35) 3697-4950</div>
+                <div>E-mail: <br><a
+                        href="mailto:gabinete.pocos@ifsuldeminas.edu.br">gabinete.pocos@ifsuldeminas.edu.br</a></div>
+            </div>
+            <div class="campus">
+                <h3>Pouso Alegre</h3>
+                <a href="https://portal.poa.ifsuldeminas.edu.br/"
+                    title="Link que direciona para o portal do Campus Pouso Alegre">
+                    <img src="images/os_campi/1_Pouso_Alegre.jpg" alt="1 Pouso Alegre">
+                </a>
+                <div>Endereço: Av. Maria da Conceição Santos, nº 900</div>
+                <div>Bairro: Parque Real/MG</div>
+                <div>CEP: 37.560-260</div>
+                <div>Tel: (35) 3427-6600</div>
+                <div>E-mail: <br><a
+                        href="mailto:gabinete.pousoalegre@ifsuldeminas.edu.br">gabinete.pousoalegre@ifsuldeminas.edu.br</a>
+                </div>
+            </div>
+            <div class="campus">
+                <h3>Carmo de Minas</h3>
+                <a href="http://cdm.ifsuldeminas.edu.br/" title="Link que direciona para o site de Carmo de Minas">
+                    <img src="images/os_campi/1_Carmo_de_Minas.jpg" alt="1 Carmo de Minas">
+                </a>
+                <div>Endereço: Al. Murilo Eugênio Rubião, s/nº</div>
+                <div>Bairro: Chacrinha/MG</div>
+                <div>CEP: 37.472-000</div>
+                <div>Tel: (35) 9-9809-7953 <strong>(VIVO)</strong></div>
+                <div>E-mail: <br><a
+                        href="mailto:gabinete.carmodeminas@ifsuldeminas.edu.br">gabinete.carmodeminas@ifsuldeminas.edu.br</a>
+                </div>
+            </div>
+            <div class="campus">
+                <h3>Três Corações</h3>
+                <a href="https://portal.tco.ifsuldeminas.edu.br/"
+                    title="Link que direciona para o site do Campus Avançado Três Corações">
+                    <img src="images/os_campi/1_-Três_Corações.jpg" alt="1 Três Corações">
+                </a>
+                <div>Endereço: R. Cel. Edgar Cavalcanti de Albuquerque, nº 61</div>
+                <div>Bairro: Chácara das Rosas/MG</div>
+                <div>Caixa Postal: nº 37</div>
+                <div>CEP 37.417-158</div>
+                <div>Tel: (35) 3239-9494</div>
+                <div>E-mail: <br><a
+                        href="mailto:gabinete.trescoracoes@ifsuldeminas.edu.br">gabinete.trescoracoes@ifsuldeminas.edu.br</a>
+                </div>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1SfM0k90yq1JFIMT0dWEpseudCe3vy8k"></iframe>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+body {
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    background-color: #0c6c1c;
+    color: #fff;
+    padding: 15px 20px;
+    margin-top: -50px;
+    text-align: center;
+    margin: 0 -20px 20px -20px;
+    box-sizing: border-box;
+}
+
+.campus-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.campus {
+    background-color: #fff;
+    border: 2px solid #0c6c1c;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: calc(50% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+}
+
+.campus:hover {
+    transform: scale(1.05);
+}
+
+.campus h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.campus img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.campus:hover img {
+    transform: scale(1.1);
+}
+
+.campus div {
+    text-align: center;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.campus a {
+    color: #0c6c1c;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.campus a:hover {
+    text-decoration: underline;
+}
+
+.map-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.map-container iframe {
+    width: 100%;
+    max-width: 750px;
+    height: 500px;
+    border: none;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .campus {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .campus div,
+    .campus a {
+        font-size: 11px;
+    }
+}
