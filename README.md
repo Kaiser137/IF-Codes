@@ -7,7 +7,7 @@ Feel free to check them out!
 * All the front-end codes here can be viewed using F12 in your browser.
 * Some codes were made to be within the institutional site, which might cause design issues when opened outside the portal.
 
-Happy exploring!
+May the force be with you!
 
 -------------------------------------------------------------------------------------------------------------------------------
 Olá!
@@ -18,3 +18,5 @@ Fique a vontade para olhar todos os códigos!
 
 * Todos os códigos front-end que estão aqui são visiveís pelo F12 no navegador.
 * Alguns códigos foram feitos para ficar dentro do site institucional, o que pode ocorrer falhas de design ao abrir fora do portal.
+
+Que a força esteja com você!
