@@ -3,6 +3,7 @@ Site: https://portal.ifsuldeminas.edu.br/index.php/os-campi
 The page is about the campuses of the Instituto Federal do Sul de Minas. 
 
 The site uses the web manager, JOOMLA, so the code includes internal CSS. However, I've added an external file for better viewing.
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 A página aborda sobre os Campi do Instituto Federal do Sul de Minas.
 
