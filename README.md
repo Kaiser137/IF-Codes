@@ -1,38 +1,19 @@
-Olá, seja bem-vindo(a) ao meu GitHub!
+Hello! 
 
-Me chamo Cezar Vitor, sou natural de Pouso Alegre, Minas Gerais!
+In this repository, you’ll find all the codes I've worked on at the Instituto Federal do Sul de Minas! 
 
-Tenho atualmente 18 anos!
+Feel free to check them out!
 
-Sou Formado em Técnico em informática pelo Instituto Federal do Sul de Minas!
+* All the front-end codes here can be viewed using F12 in your browser. 
+** Some codes were made to be within the institutional site, which might cause design issues when opened outside the portal.
 
-Estou cursando Sistemas de Informação pela Univas!
+Happy exploring!
+-------------------------------------------------------------------------------------------------------------------------------
+Olá!
 
-E também sou estagiário do Instituto Federal do Sul de Minas!
+Nesse repositório ficará todos os Códigos que eu trabalho/trabalhei no Instituto Federal do Sul de Minas!
 
-Abaixo, veja mais sobre mim e meu projetos, além de minhas linguagens favoritas!
+Fique a vontade para olhar todos os códigos!
 
-
-## Ferramentas e Tecnologias
-
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original-wordmark.svg" height="120px" width="120px"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg" height="120px" width="120px"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-plain-wordmark.svg" height="120px" width="120px"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original-wordmark.svg" height="120px" width="120px"/>
-</div>
-
-## Estou aprendendo
-
-<div style="display: flex;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" height="120px" width="120px"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" height="120px" width="120px"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" height="120px" width="120px"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" height="120px" width="120px"/>
-</div>
-
-## Estatísticas
-<a href="https://github.com/Kaiser137">
-  <img loading="lazy" height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kaiser137&layout=compact&langs_count=7&theme=dracula"/>
-  <img loading="lazy" height="150em" src="https://github-readme-stats.vercel.app/api?username=Kaiser137&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
-</a>
+* Todos os códigos front-end que estão aqui são visiveís pelo F12 no navegador.
+** Alguns códigos foram feitos para ficar dentro do site institucional, o que pode ocorrer falhas de design ao abrir fora do portal.
