@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+    <style>
+        body {
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            background-color: #0c6c1c;
+            color: #fff;
+            padding: 20px;
+            margin: 0 -20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .page-title-image {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title-image img {
+            max-width: 50px;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .page-title-image img:hover {
+            transform: scale(1.2);
+        }
+
+        .section {
+            border: 2px solid #0c6c1c;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            position: relative;
+            transition: transform 0.3s;
+            background: linear-gradient(120deg, #ffffff, #e6f7e6);
+        }
+
+        .section.active:hover {
+            transform: scale(1.02);
+        }
+
+        .section h3 {
+            color: #0c6c1c;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .secao_menu {
+            border: 2px solid #0c6c1c;
+            border-bottom-left-radius: 10px 10px;
+            border-bottom-right-radius: 10px 10px;
+            padding: 25px;
+            margin-top: -20px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .secao_menu:hover {
+            transform: scale(1.02);
+        }
+
+        .secao_menu h3 {
+            color: #0c6c1c;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .menu-linha {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .menu-linha a {
+            color: #0c6c1c;
+            background-color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 1px solid #0c6c1c;
+            border-radius: 15px;
+            margin: 5px;
+            display: inline-block;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .menu-linha a:hover {
+            color: #fff;
+            background-color: #0c6c1c;
+            transform: scale(1.1);
+            text-decoration: underline;
+        }
+
+        #mobile-menu {
+            display: none;
+            text-align: center;
+        }
+
+        .gallery {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 400px;
+            transition: transform 0.8s;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery img {
+            max-width: 80%;
+            max-height: 80%;
+            display: none;
+            border-radius: 15px;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            cursor: pointer;
+            position: relative;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .gallery img.active {
+            display: block;
+            opacity: 1;
+            transition: transform 0.3s, opacity 0.5s;
+            border: 2px solid #0c6c1c;
+        }
+
+        .gallery img.active:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-controls {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .gallery-control {
+            background-color: #0c6c1c;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            pointer-events: all;
+        }
+
+        .gallery-control:hover {
+            color: #0c6c1c;
+            background-color: #fff;
+            border: 1px solid #0c6c1c;
+        }
+
+        .thumbnail-container {
+            display: inline-flex;
+            justify-content: center;
+            margin-top: 10px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .thumbnail-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 13px;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .thumbnail-wrapper .thumbnail {
+            width: 100px;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            opacity: 1;
+            border: 2px solid #0c6c1c;
+        }
+
+        .gallery-info {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            padding: 50px;
+            background-color: #fff;
+            border: 2px solid #0c6c1c;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            transition: opacity 0.3s, visibility 0.3s;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+        .welcome-section:hover {
+            transform: scale(1.02);
+        }
+
+        .welcome-section.hidden {
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+
+        .fullscreen {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .fullscreen img {
+            max-width: 95%;
+            max-height: 85%;
+            object-fit: contain;
+        }
+
+        .fullscreen-caption {
+            color: #fff;
+            margin-top: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        body.fullscreen-active {
+            overflow: hidden;
+        }
+
+        #mobile-content {
+            display: none;
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .secao_menu a {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .menu-linha {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .menu-linha a {
+                margin: 5px;
+                padding: 10px 20px;
+            }
+
+            .gallery {
+                height: auto;
+                margin-bottom: 10px;
+            }
+
+            .gallery img {
+                max-width: 90%;
+                max-height: 90%;
+                margin: 0;
+            }
+
+            .gallery-controls {
+                flex-direction: column;
+                align-items: center;
+                top: auto;
+                bottom: 10px;
+                transform: none;
+            }
+
+            .gallery-control {
+                margin-bottom: 10px;
+                width: 90%;
+                text-align: center;
+            }
+
+            .section {
+                margin-top: 10px;
+            }
+
+            .gallery-info {
+                margin-top: 10px;
+                font-size: 16px;
+            }
+          
+          	.thumbnail-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 12px;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+
+        .thumbnail {
+            width: 90px;
+            height: 60px;
+            object-fit: cover;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .thumbnail-wrapper .thumbnail {
+            width: 90px;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+            #desktop-content {
+                display: none;
+            }
+
+            #mobile-content {
+                display: flex;
+                justify-content: center;
+            }
+
+            #desktop-menu {
+                display: none;
+            }
+
+            #mobile-menu {
+                display: flex;
+                justify-content: center;
+            }
+
+            .gallery-control {
+                width: auto;
+                padding: 10px;
+                font-size: 16px;
+                margin: 0 5px;
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h2 class="page-title">
+            Galeria de imagens
+            <a href="https://portal.ifsuldeminas.edu.br/index.php/comunicacao" class="page-title-image">
+                <img src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Emoji%20-%20titulo/voltar.png" alt="Home">
+            </a>
+        </h2>
+        <div class="secao_menu">
+            <h3 style="text-align: center; margin-top: -1px;">Menu</h3>
+            <div style="text-align: center;">Clique no item desejado e será levado ao lugar correspondente!</div><br>
+            <div id="desktop-menu">
+                <div class="custom-menu">
+                    <div class="menu-linha">
+                        <a href="#" data-target="reitoria">REITORIA</a>
+                        <a href="#" data-target="carmo-de-minas">CARMO DE MINAS</a>
+                        <a href="#" data-target="inconfidentes">INCONFIDENTES</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="machado">MACHADO</a>
+                        <a href="#" data-target="muzambinho">MUZAMBINHO</a>
+                        <a href="#" data-target="passos">PASSOS</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="pocos-de-caldas">POÇOS DE CALDAS</a>
+                        <a href="#" data-target="pouso-alegre">POUSO ALEGRE</a>
+                        <a href="#" data-target="tres-coracoes">TRÊS CORAÇÕES</a>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu">
+                <div class="custom-menu">
+                    <div class="menu-linha">
+                        <a href="#" data-target="reitoria">REITORIA</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="carmo-de-minas">CARMO DE MINAS</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="inconfidentes">INCONFIDENTES</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="machado">MACHADO</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="muzambinho">MUZAMBINHO</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="passos">PASSOS</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="pocos-de-caldas">POÇOS DE CALDAS</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="pouso-alegre">POUSO ALEGRE</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#" data-target="tres-coracoes">TRÊS CORAÇÕES</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="welcome" class="welcome-section">
+            <h2>Bem-vindo à Galeria de Imagens</h2>
+            <p>Explore as diversas galerias clicando nos itens do menu acima. Cada galeria apresenta imagens únicas para
+                sua apreciação. Clique em uma galeria para começar!</p>
+        </div>
+
+        <!-- Seção Reitoria -->
+        <div id="reitoria" class="section gallery-section">
+            <h3>Reitoria</h3>
+            <div class="gallery">
+                <div id="desktop-content">
+                    <button class="gallery-control" id="prev1-desktop">&#10094;</button>
+                </div>
+
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1784.JPG" alt="Imagem 1" class="active" data-caption="Imagem 1 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1851.JPG" alt="Imagem 2" data-caption="Imagem 2 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1855.JPG" alt="Imagem 3" data-caption="Imagem 3 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1851.JPG" alt="Imagem 2" data-caption="Imagem 2 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1855.JPG" alt="Imagem 3" data-caption="Imagem 3 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1851.JPG" alt="Imagem 2" data-caption="Imagem 2 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1851.JPG" alt="Imagem 2" data-caption="Imagem 2 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1855.JPG" alt="Imagem 3" data-caption="Imagem 3 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1851.JPG" alt="Imagem 2" data-caption="Imagem 2 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1851.JPG" alt="Imagem 2" data-caption="Imagem 2 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1855.JPG" alt="Imagem 3" data-caption="Imagem 3 - Reitoria">
+                <img src="https://portal.ifsuldeminas.edu.br/images/galeria_em_artigos/2019/fevereiro/11/fotosreitoria/IMG_1851.JPG" alt="Imagem 2" data-caption="Imagem 2 - Reitoria">
+
+                <div id="desktop-content">
+                    <button class="gallery-control" id="next1-desktop">&#10095;</button>
+                </div>
+            </div>
+
+            <div id="mobile-content">
+                <button class="gallery-control" id="prev1-mobile">&#10094;</button>
+                <button class="gallery-control" id="next1-mobile">&#10095;</button>
+            </div>
+
+            <div class="thumbnail-container">
+                <div class="thumbnail-wrapper">
+                    <!-- Miniaturas serão geradas dinamicamente aqui -->
+                </div>
+            </div>
+
+            <div class="gallery-info">Imagem 1 de 6</div>
+        </div>
+
+        <!-- Fullscreen window -->
+        <div id="fullscreen" class="fullscreen">
+            <span class="fullscreen-close">&times;</span>
+            <img id="fullscreenImage" src="" alt="">
+            <div class="fullscreen-caption" id="fullscreenCaption"></div>
+        </div>
+    </div>
+
+    <script>
+        // Função para ajustar a animação de acordo com o número de imagens e tamanho da tela
+        function adjustGalleryAnimation(section) {
+            const images = section.querySelectorAll('.gallery img');
+            const gallery = section.querySelector('.gallery');
+            const minImagesForAnimation = 6; // Número mínimo de imagens para ativar animação
+            const isMobile = window.innerWidth <= 600;
+
+            if ((isMobile && images.length <= 3) || (!isMobile && images.length <= minImagesForAnimation)) {
+                gallery.classList.remove('has-animation');
+            } else {
+                gallery.classList.add('has-animation');
+            }
+        }
+
+        // Adiciona evento de clique nos links do menu para rolar suavemente até a seção
+        document.querySelectorAll('.menu-linha a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Previne o comportamento padrão do link
+                const targetId = link.getAttribute('data-target');
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.getElementById(targetId);
+                targetSection.classList.add('active');
+                document.getElementById('welcome').classList.add('hidden');
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+
+        // Inicializa a galeria e seus controles
+        document.querySelectorAll('.gallery-section').forEach((section) => {
+            const gallery = section.querySelector('.gallery');
+            const images = gallery.querySelectorAll('img');
+            const prevButtonDesktop = gallery.querySelector('.gallery-control#prev1-desktop, .gallery-control#prev2-desktop, .gallery-control#prev3-desktop, .gallery-control#prev4-desktop, .gallery-control#prev5-desktop, .gallery-control#prev6-desktop, .gallery-control#prev7-desktop, .gallery-control#prev8-desktop, .gallery-control#prev9-desktop');
+            const nextButtonDesktop = gallery.querySelector('.gallery-control#next1-desktop, .gallery-control#next2-desktop, .gallery-control#next3-desktop, .gallery-control#next4-desktop, .gallery-control#next5-desktop, .gallery-control#next6-desktop, .gallery-control#next7-desktop, .gallery-control#next8-desktop, .gallery-control#next9-desktop');
+            const prevButtonMobile = section.querySelector('.gallery-control#prev1-mobile, .gallery-control#prev2-mobile, .gallery-control#prev3-mobile, .gallery-control#prev4-mobile, .gallery-control#prev5-mobile, .gallery-control#prev6-mobile, .gallery-control#prev7-mobile, .gallery-control#prev8-mobile, .gallery-control#prev9-mobile');
+            const nextButtonMobile = section.querySelector('.gallery-control#next1-mobile, .gallery-control#next2-mobile, .gallery-control#next3-mobile, .gallery-control#next4-mobile, .gallery-control#next5-mobile, .gallery-control#next6-mobile, .gallery-control#next7-mobile, .gallery-control#next8-mobile, .gallery-control#next9-mobile');
+            const thumbnailContainer = section.querySelector('.thumbnail-wrapper');
+            const galleryInfo = section.querySelector('.gallery-info');
+            let currentIndex = 0;
+
+            const totalVisibleDesktop = 6;
+            const totalVisibleMobile = 3;
+            const thumbnailWidth = 100;
+            
+
+            const updateGallery = () => {
+                // Alterna a classe 'active' nas imagens para destacar a imagem atual com base no índice
+                images.forEach((img, idx) => {
+                    img.classList.toggle('active', idx === currentIndex);
+                });
+
+                // Seleciona todas as miniaturas no container de miniaturas
+                const thumbnails = thumbnailContainer.querySelectorAll('.thumbnail');
+                // Alterna a classe 'active' nas miniaturas para destacar a miniatura atual com base no índice
+                thumbnails.forEach((thumb, idx) => {
+                    thumb.classList.toggle('active', idx === currentIndex);
+                });
+
+                // Atualiza o texto informativo com a imagem atual e o total de imagens
+                galleryInfo.textContent = `Imagem ${currentIndex + 1} de ${images.length}`;
+
+                // Verifica se a largura da janela é menor ou igual a 600 pixels (para detectar dispositivos móveis)
+                const isMobile = window.innerWidth <= 600;
+                // Define o número total de miniaturas visíveis com base no dispositivo (móvel ou desktop)
+                const totalVisible = isMobile ? totalVisibleMobile : totalVisibleDesktop;
+                // Calcula quantas miniaturas devem estar visíveis em cada lado da imagem central
+                const halfVisible = Math.floor(totalVisible / 3);
+
+                // Calcula o índice inicial e final das miniaturas a serem exibidas
+                let startIndex = currentIndex - halfVisible;
+                let endIndex = currentIndex + halfVisible;
+
+                // Ajusta o índice final se o índice inicial for negativo
+                if (startIndex < 0) {
+                    endIndex = Math.min(thumbnails.length - 1, endIndex + Math.abs(startIndex));
+                    startIndex = 0;
+                }
+
+                // Ajusta o índice inicial se o índice final ultrapassar o número total de miniaturas
+                if (endIndex >= thumbnails.length) {
+                    startIndex = Math.max(0, startIndex - (endIndex - thumbnails.length + 1));
+                    endIndex = thumbnails.length - 1;
+                }
+
+                // Calcula o deslocamento necessário para centralizar a visualização de miniaturas
+                const offset = startIndex * thumbnailWidth;
+                // Calcula a largura total das miniaturas
+                const totalThumbnailsWidth = thumbnails.length * thumbnailWidth;
+                // Obtém a largura do container de miniaturas
+                const containerWidth = thumbnailContainer.clientWidth;
+
+                // Garante que o deslocamento não ultrapasse o limite do container
+                const maxOffset = Math.max(0, totalThumbnailsWidth + 20);
+                const clampedOffset = Math.min(maxOffset, offset);
+
+                // Aplica a transformação de deslocamento horizontal ao container de miniaturas
+                thumbnailContainer.style.transform = `translateX(-${clampedOffset}px)`;
+                // Define a transição suave para o deslocamento
+                thumbnailContainer.style.transition = 'transform 0.5s ease';
+            };
+
+            prevButtonDesktop.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateGallery();
+            });
+
+            nextButtonDesktop.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateGallery();
+            });
+
+            prevButtonMobile.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateGallery();
+            });
+
+            nextButtonMobile.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateGallery();
+            });
+
+            images.forEach((img, idx) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = img.src;
+                thumbnail.alt = img.alt;
+                thumbnail.classList.add('thumbnail');
+                thumbnail.addEventListener('click', () => {
+                    currentIndex = idx;
+                    updateGallery();
+                });
+                thumbnailContainer.appendChild(thumbnail);
+            });
+
+            updateGallery();
+            adjustGalleryAnimation(section);
+
+            images.forEach(img => {
+                img.addEventListener('click', () => {
+                    document.getElementById('fullscreenImage').src = img.src;
+                    document.getElementById('fullscreenCaption').textContent = img.getAttribute('data-caption');
+                    document.getElementById('fullscreen').style.display = 'flex';
+                    document.body.classList.add('fullscreen-active');
+                });
+            });
+        });
+
+        document.getElementById('fullscreen').addEventListener('click', (event) => {
+            if (event.target === document.getElementById('fullscreen') || event.target === document.querySelector('.fullscreen-close')) {
+                document.getElementById('fullscreen').style.display = 'none';
+                document.body.classList.remove('fullscreen-active');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('welcome').classList.remove('hidden');
+        });
+
+        // Atualiza a galeria no resize da tela
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.gallery-section').forEach((section) => {
+                adjustGalleryAnimation(section);
+            });
+        });
+
+        function adjustLayout() {
+            const desktopContent = document.getElementById('desktop-content');
+            const mobileContent = document.getElementById('mobile-content');
+
+            if (window.innerWidth < 600) {
+                desktopContent.style.display = 'none';
+                mobileContent.style.display = 'block';
+            } else {
+                desktopContent.style.display = 'block';
+                mobileContent.style.display = 'none';
+            }
+        }
+
+        // Ajustar o layout ao carregar a página
+        window.addEventListener('load', adjustLayout);
+
+        // Ajustar o layout ao redimensionar a janela
+        window.addEventListener('resize', adjustLayout);
+    </script>
+
+</body>
+</html>
