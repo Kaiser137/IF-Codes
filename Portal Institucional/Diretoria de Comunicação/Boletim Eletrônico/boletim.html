@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boletim Eletrônico</title>
+    <style>
+        body {
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            background-color: #0c6c1c;
+            color: #fff;
+            padding: 20px;
+            margin: 0 -20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .page-title-image {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title-image img {
+            max-width: 50px;
+            height: auto;
+        }
+
+        .section {
+            border: 2px solid #0c6c1c;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            position: relative;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 15px 15px 1px #0c6c1c, 15px 15px 1px 2px #fff;
+            transition: transform 0.3s;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+        }
+
+        .section h3 {
+            color: #0c6c1c;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .section a {
+            color: #0000ff;
+            text-decoration: none;
+        }
+
+        .section a:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .button-container a {
+            flex: 1 1 calc(33.333% - 20px);
+            margin: 5px;
+            text-align: center;
+        }
+
+        .button-container a img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.2s;
+        }
+
+        .button-container a:hover img {
+            transform: scale(1.1);
+        }
+
+        @media (min-width:601px) and (max-width: 979px) {
+            .button-container a {
+                flex: 1 1 calc(30% - 20px);
+                margin: 5px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section p {
+                font-size: 14px;
+            }
+
+            .page-title-image img {
+                max-width: 33px;
+                height: auto;
+            }
+
+            .page-title-image {
+                position: absolute;
+                right: 20px;
+                top: 70%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 0px;
+            }
+
+            .button-container a {
+                flex: none;
+                width: 80%;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h2 class="page-title">
+            Boletim Eletrônico
+            <a href="https://portal.ifsuldeminas.edu.br/index.php/comunicacao" class="page-title-image">
+                <img src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Emoji%20-%20titulo/voltar.png"
+                    alt="Home">
+            </a>
+        </h2>
+        <div class="section">
+            <div class="button-container">
+                <div><a href="http://portal.ifsuldeminas.edu.br/institucional-geral/918-boletins-eletronicos-ifsuldeminas-2015"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Boletins%20-%20eletronicos/2015.png"
+                            alt="2015"></a>
+                </div>
+                <div><a
+                        href="http://portal.ifsuldeminas.edu.br/institucional-geral/919-boletins-eletronicos-ifsuldeminas-2016"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Boletins%20-%20eletronicos/2016.png"
+                            alt="2016"></a>
+                </div>
+            </div>
+            <div class="button-container">
+                <div><a
+                        href="http://portal.ifsuldeminas.edu.br/institucional-geral/922-boletins-eletronicos-ifsuldeminas-2017"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Boletins%20-%20eletronicos/2017.png"
+                            alt="2017"></a>
+                </div>
+                <div><a
+                        href="https://portal.ifsuldeminas.edu.br/index.php/institucional-geral/2647-boletins-eletronicos-2018"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Boletins%20-%20eletronicos/2018.png"
+                            alt="2018"></a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
