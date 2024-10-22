@@ -604,7 +604,7 @@
             <div class="gallery-info"></div>
         </div>
 
-        <!-- Seção Machado Ok -->
+        <!-- Seção Machado -->
         <div id="machado" class="section gallery-section">
             <h3>Machado</h3>
             <div class="gallery">
@@ -677,6 +677,15 @@
                 targetSection.classList.add('active');
                 document.getElementById('welcome').classList.add('hidden');
                 targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Carrega as imagens sob demanda
+                const images = targetSection.querySelectorAll('img[data-src]');
+                images.forEach(img => {
+                    if (!img.hasAttribute('data-loaded')) {
+                        img.setAttribute('src', img.getAttribute('data-src'));
+                        img.setAttribute('data-loaded', 'true');
+                    }
+                });
             });
         });
 
