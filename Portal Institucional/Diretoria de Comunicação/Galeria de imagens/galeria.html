@@ -749,16 +749,59 @@
             const thumbnailWidth = 100;
 
             const updateGallery = () => {
+                // Alterna a classe 'active' nas imagens para destacar a imagem atual com base no índice
                 images.forEach((img, idx) => {
                     img.classList.toggle('active', idx === currentIndex);
                 });
 
+                // Seleciona todas as miniaturas no container de miniaturas
                 const thumbnails = thumbnailContainer.querySelectorAll('.thumbnail');
+                // Alterna a classe 'active' nas miniaturas para destacar a miniatura atual com base no índice
                 thumbnails.forEach((thumb, idx) => {
                     thumb.classList.toggle('active', idx === currentIndex);
                 });
 
+                // Atualiza o texto informativo com a imagem atual e o total de imagens
                 galleryInfo.textContent = `Imagem ${currentIndex + 1} de ${images.length}`;
+
+                // Verifica se a largura da janela é menor ou igual a 600 pixels (para detectar dispositivos móveis)
+                const isMobile = window.innerWidth <= 600;
+                // Define o número total de miniaturas visíveis com base no dispositivo (móvel ou desktop)
+                const totalVisible = isMobile ? totalVisibleMobile : totalVisibleDesktop;
+                // Calcula quantas miniaturas devem estar visíveis em cada lado da imagem central
+                const halfVisible = Math.floor(totalVisible / 3);
+
+                // Calcula o índice inicial e final das miniaturas a serem exibidas
+                let startIndex = currentIndex - halfVisible;
+                let endIndex = currentIndex + halfVisible;
+
+                // Ajusta o índice final se o índice inicial for negativo
+                if (startIndex < 0) {
+                    endIndex = Math.min(thumbnails.length - 1, endIndex + Math.abs(startIndex));
+                    startIndex = 0;
+                }
+
+                // Ajusta o índice inicial se o índice final ultrapassar o número total de miniaturas
+                if (endIndex >= thumbnails.length) {
+                    startIndex = Math.max(0, startIndex - (endIndex - thumbnails.length + 1));
+                    endIndex = thumbnails.length - 1;
+                }
+
+                // Calcula o deslocamento necessário para centralizar a visualização de miniaturas
+                const offset = startIndex * thumbnailWidth;
+                // Calcula a largura total das miniaturas
+                const totalThumbnailsWidth = thumbnails.length * thumbnailWidth;
+                // Obtém a largura do container de miniaturas
+                const containerWidth = thumbnailContainer.clientWidth;
+
+                // Garante que o deslocamento não ultrapasse o limite do container
+                const maxOffset = Math.max(0, totalThumbnailsWidth + 20);
+                const clampedOffset = Math.min(maxOffset, offset);
+
+                // Aplica a transformação de deslocamento horizontal ao container de miniaturas
+                thumbnailContainer.style.transform = `translateX(-${clampedOffset}px)`;
+                // Define a transição suave para o deslocamento
+                thumbnailContainer.style.transition = 'transform 0.5s ease';
             };
 
             prevButtonDesktop.addEventListener('click', () => {
