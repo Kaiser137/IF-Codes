@@ -689,7 +689,7 @@
     </div>
 
     <script>
-        // Função para ajustar a galeria ao carregar as imagens sob demanda
+       // Função para carregar as imagens sob demanda
 function loadGalleryImages(section) {
     const images = section.querySelectorAll('img[data-src]');
     images.forEach(img => {
@@ -772,7 +772,7 @@ document.querySelectorAll('.menu-linha a').forEach(link => {
 // Inicializa a galeria e seus controles (funções de navegação e thumbnails permanecem as mesmas)
 document.querySelectorAll('.gallery-section').forEach((section) => {
     const gallery = section.querySelector('.gallery');
-    const images = gallery.querySelectorAll('img');
+    const images = gallery.querySelectorAll('img[data-src]'); // Carregar com data-src para lazy loading
     const prevButtonDesktop = gallery.querySelector('.gallery-control#prev1-desktop, .gallery-control#prev2-desktop, .gallery-control#prev3-desktop, .gallery-control#prev4-desktop, .gallery-control#prev5-desktop, .gallery-control#prev6-desktop, .gallery-control#prev7-desktop, .gallery-control#prev8-desktop, .gallery-control#prev9-desktop');
     const nextButtonDesktop = gallery.querySelector('.gallery-control#next1-desktop, .gallery-control#next2-desktop, .gallery-control#next3-desktop, .gallery-control#next4-desktop, .gallery-control#next5-desktop, .gallery-control#next6-desktop, .gallery-control#next7-desktop, .gallery-control#next8-desktop, .gallery-control#next9-desktop');
     const prevButtonMobile = section.querySelector('.gallery-control#prev1-mobile, .gallery-control#prev2-mobile, .gallery-control#prev3-mobile, .gallery-control#prev4-mobile, .gallery-control#prev5-mobile, .gallery-control#prev6-mobile, .gallery-control#prev7-mobile, .gallery-control#prev8-mobile, .gallery-control#prev9-mobile');
