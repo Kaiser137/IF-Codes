@@ -836,10 +836,10 @@ let currentIndex = 0;
 
 // Função para configurar os eventos de navegação para os botões de próximo e anterior
 function setupNavigation(section) {
-    const nextButtonDesktop = section.querySelector('.gallery-control#next1-desktop');
-    const prevButtonDesktop = section.querySelector('.gallery-control#prev1-desktop');
-    const nextButtonMobile = section.querySelector('.gallery-control#next1-mobile');
-    const prevButtonMobile = section.querySelector('.gallery-control#prev1-mobile');
+    const prevButtonDesktop = gallery.querySelector('.gallery-control#prev1-desktop, .gallery-control#prev2-desktop, .gallery-control#prev3-desktop, .gallery-control#prev4-desktop, .gallery-control#prev5-desktop, .gallery-control#prev6-desktop, .gallery-control#prev7-desktop, .gallery-control#prev8-desktop, .gallery-control#prev9-desktop');
+    const nextButtonDesktop = gallery.querySelector('.gallery-control#next1-desktop, .gallery-control#next2-desktop, .gallery-control#next3-desktop, .gallery-control#next4-desktop, .gallery-control#next5-desktop, .gallery-control#next6-desktop, .gallery-control#next7-desktop, .gallery-control#next8-desktop, .gallery-control#next9-desktop');
+    const prevButtonMobile = section.querySelector('.gallery-control#prev1-mobile, .gallery-control#prev2-mobile, .gallery-control#prev3-mobile, .gallery-control#prev4-mobile, .gallery-control#prev5-mobile, .gallery-control#prev6-mobile, .gallery-control#prev7-mobile, .gallery-control#prev8-mobile, .gallery-control#prev9-mobile');
+    const nextButtonMobile = section.querySelector('.gallery-control#next1-mobile, .gallery-control#next2-mobile, .gallery-control#next3-mobile, .gallery-control#next4-mobile, .gallery-control#next5-mobile, .gallery-control#next6-mobile, .gallery-control#next7-mobile, .gallery-control#next8-mobile, .gallery-control#next9-mobile');
 
     if (nextButtonDesktop && prevButtonDesktop) {
         nextButtonDesktop.addEventListener('click', () => {
