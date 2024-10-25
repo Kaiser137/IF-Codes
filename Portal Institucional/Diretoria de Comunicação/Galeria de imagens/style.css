@@ -67,7 +67,6 @@ body {
     visibility: visible;
     position: relative;
     transition: transform 0.3s;
-    background: linear-gradient(120deg, #ffffff, #e6f7e6);
 }
 
 .section.active:hover {
@@ -230,6 +229,10 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.has-animation .thumbnail-wrapper {
+    transition: transform 0.5s ease;
 }
 
 .thumbnail:hover,

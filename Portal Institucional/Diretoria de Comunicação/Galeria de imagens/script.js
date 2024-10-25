@@ -12,129 +12,180 @@ function adjustGalleryAnimation(section) {
     }
 }
 
-// Adiciona evento de clique nos links do menu para rolar suavemente até a seção
 document.querySelectorAll('.menu-linha a').forEach(link => {
     link.addEventListener('click', (event) => {
-        event.preventDefault(); // Previne o comportamento padrão do link
+        event.preventDefault();
         const targetId = link.getAttribute('data-target');
-        document.querySelectorAll('.section').forEach(section => {
-            section.classList.remove('active');
-        });
         const targetSection = document.getElementById(targetId);
-        targetSection.classList.add('active');
+
+        // Fecha outras seções e descarrega suas imagens
+        document.querySelectorAll('.section').forEach(section => {
+            if (section !== targetSection) {
+                section.classList.remove('active');
+                unloadImages(section);
+                clearThumbnails(section);
+            }
+        });
+
+        // Alterna a visibilidade da seção alvo
+        targetSection.classList.toggle('active');
+        if (targetSection.classList.contains('active')) {
+            loadImages(targetSection);
+            clearThumbnails(targetSection);
+            generateThumbnails(targetSection);
+            currentIndex = 0;
+            updateGallery(targetSection);
+
+            // Garante que a rolagem ocorra após a seção ser visível
+            setTimeout(() => {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 0);
+        } else {
+            unloadImages(targetSection);
+            clearThumbnails(targetSection);
+        }
+
+        // Oculta a seção de boas-vindas ao selecionar qualquer item do menu
         document.getElementById('welcome').classList.add('hidden');
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
+});
+
+// Função para carregar as imagens
+function loadImages(section) {
+    const images = section.querySelectorAll('img[data-src]');
+    images.forEach(img => {
+        if (!img.hasAttribute('data-loaded')) {
+            img.setAttribute('src', img.getAttribute('data-src'));
+            img.setAttribute('data-loaded', 'true');
+        }
+    });
+}
+
+// Função para descarregar as imagens
+function unloadImages(section) {
+    const images = section.querySelectorAll('img[data-loaded]');
+    images.forEach(img => {
+        img.removeAttribute('src');
+        img.removeAttribute('data-loaded');
+    });
+}
+
+// Função para gerar miniaturas das imagens
+function generateThumbnails(section) {
+    const gallery = section.querySelector('.gallery');
+    const thumbnailContainer = section.querySelector('.thumbnail-wrapper');
+    const images = gallery.querySelectorAll('img[data-loaded]');
+
+    images.forEach((img, index) => {
+        const thumbnail = document.createElement('img');
+        thumbnail.src = img.getAttribute('data-src');
+        thumbnail.alt = img.alt;
+        thumbnail.classList.add('thumbnail');
+        thumbnail.addEventListener('click', () => {
+            currentIndex = index; // Atualiza o índice ao clicar na miniatura
+            updateGallery(section); // Atualiza a galeria com a nova imagem ativa
+        });
+        thumbnailContainer.appendChild(thumbnail);
+    });
+}
+
+// Função para limpar as miniaturas
+function clearThumbnails(section) {
+    const thumbnailContainer = section.querySelector('.thumbnail-wrapper');
+    thumbnailContainer.innerHTML = '';
+}
+
+// Função para atualizar a galeria
+function updateGallery(section) {
+    const gallery = section.querySelector('.gallery');
+    const images = gallery.querySelectorAll('img');
+    const galleryInfo = section.querySelector('.gallery-info');
+    const thumbnailContainer = section.querySelector('.thumbnail-wrapper');
+    const thumbnailWidth = 100;
+    const totalVisibleThumbnails = 6;
+    const totalVisibleMobile = 3;
+    const isMobile = window.innerWidth <= 600;
+    const totalVisible = isMobile ? totalVisibleMobile : totalVisibleThumbnails;
+    const halfVisible = Math.floor(totalVisible / 3);
+
+    images.forEach((img, idx) => {
+        img.classList.toggle('active', idx === currentIndex);
+    });
+
+    const thumbnails = thumbnailContainer.querySelectorAll('.thumbnail');
+    thumbnails.forEach((thumb, idx) => {
+        thumb.classList.toggle('active', idx === currentIndex);
+    });
+
+    galleryInfo.textContent = `Imagem ${currentIndex + 1} de ${images.length}`;
+
+    let startIndex = currentIndex - halfVisible;
+    let endIndex = currentIndex + halfVisible;
+
+    if (startIndex < 0) {
+        endIndex = Math.min(thumbnails.length - 1, endIndex + Math.abs(startIndex));
+        startIndex = 0;
+    }
+
+    if (endIndex >= thumbnails.length) {
+        startIndex = Math.max(0, startIndex - (endIndex - thumbnails.length + 1));
+        endIndex = thumbnails.length - 1;
+    }
+
+    const offset = startIndex * thumbnailWidth;
+    thumbnailContainer.style.transform = `translateX(-${offset}px)`;
+}
+
+// Variável para armazenar o índice atual
+let currentIndex = 0;
+
+// Função para configurar os eventos de navegação para os botões de próximo e anterior
+function setupNavigation(section) {
+    const prevButtonDesktop = section.querySelector('.gallery-control#prev1-desktop');
+    const nextButtonDesktop = section.querySelector('.gallery-control#next1-desktop');
+    const prevButtonMobile = section.querySelector('.gallery-control#prev1-mobile');
+    const nextButtonMobile = section.querySelector('.gallery-control#next1-mobile');
+
+    if (nextButtonDesktop && prevButtonDesktop) {
+        nextButtonDesktop.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % section.querySelectorAll('.gallery img').length;
+            updateGallery(section);
+        });
+
+        prevButtonDesktop.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + section.querySelectorAll('.gallery img').length) % section.querySelectorAll('.gallery img').length;
+            updateGallery(section);
+        });
+    }
+
+    if (nextButtonMobile && prevButtonMobile) {
+        nextButtonMobile.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % section.querySelectorAll('.gallery img').length;
+            updateGallery(section);
+        });
+
+        prevButtonMobile.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + section.querySelectorAll('.gallery img').length) % section.querySelectorAll('.gallery img').length;
+            updateGallery(section);
+        });
+    }
+}
+
+
+// Configurações iniciais ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+        setupNavigation(section); // Configura os eventos de navegação para cada seção
+    });
+    document.getElementById('welcome').classList.remove('hidden');
 });
 
 // Inicializa a galeria e seus controles
 document.querySelectorAll('.gallery-section').forEach((section) => {
-    const gallery = section.querySelector('.gallery');
-    const images = gallery.querySelectorAll('img');
-    const prevButtonDesktop = gallery.querySelector('.gallery-control#prev1-desktop, .gallery-control#prev2-desktop, .gallery-control#prev3-desktop, .gallery-control#prev4-desktop, .gallery-control#prev5-desktop, .gallery-control#prev6-desktop, .gallery-control#prev7-desktop, .gallery-control#prev8-desktop, .gallery-control#prev9-desktop');
-    const nextButtonDesktop = gallery.querySelector('.gallery-control#next1-desktop, .gallery-control#next2-desktop, .gallery-control#next3-desktop, .gallery-control#next4-desktop, .gallery-control#next5-desktop, .gallery-control#next6-desktop, .gallery-control#next7-desktop, .gallery-control#next8-desktop, .gallery-control#next9-desktop');
-    const prevButtonMobile = section.querySelector('.gallery-control#prev1-mobile, .gallery-control#prev2-mobile, .gallery-control#prev3-mobile, .gallery-control#prev4-mobile, .gallery-control#prev5-mobile, .gallery-control#prev6-mobile, .gallery-control#prev7-mobile, .gallery-control#prev8-mobile, .gallery-control#prev9-mobile');
-    const nextButtonMobile = section.querySelector('.gallery-control#next1-mobile, .gallery-control#next2-mobile, .gallery-control#next3-mobile, .gallery-control#next4-mobile, .gallery-control#next5-mobile, .gallery-control#next6-mobile, .gallery-control#next7-mobile, .gallery-control#next8-mobile, .gallery-control#next9-mobile');
-    const thumbnailContainer = section.querySelector('.thumbnail-wrapper');
-    const galleryInfo = section.querySelector('.gallery-info');
-    let currentIndex = 0;
-
-    const totalVisibleDesktop = 6;
-    const totalVisibleMobile = 3;
-    const thumbnailWidth = 100;
-    
-
-    const updateGallery = () => {
-        // Alterna a classe 'active' nas imagens para destacar a imagem atual com base no índice
-        images.forEach((img, idx) => {
-            img.classList.toggle('active', idx === currentIndex);
-        });
-
-        // Seleciona todas as miniaturas no container de miniaturas
-        const thumbnails = thumbnailContainer.querySelectorAll('.thumbnail');
-        // Alterna a classe 'active' nas miniaturas para destacar a miniatura atual com base no índice
-        thumbnails.forEach((thumb, idx) => {
-            thumb.classList.toggle('active', idx === currentIndex);
-        });
-
-        // Atualiza o texto informativo com a imagem atual e o total de imagens
-        galleryInfo.textContent = `Imagem ${currentIndex + 1} de ${images.length}`;
-
-        // Verifica se a largura da janela é menor ou igual a 600 pixels (para detectar dispositivos móveis)
-        const isMobile = window.innerWidth <= 600;
-        // Define o número total de miniaturas visíveis com base no dispositivo (móvel ou desktop)
-        const totalVisible = isMobile ? totalVisibleMobile : totalVisibleDesktop;
-        // Calcula quantas miniaturas devem estar visíveis em cada lado da imagem central
-        const halfVisible = Math.floor(totalVisible / 3);
-
-        // Calcula o índice inicial e final das miniaturas a serem exibidas
-        let startIndex = currentIndex - halfVisible;
-        let endIndex = currentIndex + halfVisible;
-
-        // Ajusta o índice final se o índice inicial for negativo
-        if (startIndex < 0) {
-            endIndex = Math.min(thumbnails.length - 1, endIndex + Math.abs(startIndex));
-            startIndex = 0;
-        }
-
-        // Ajusta o índice inicial se o índice final ultrapassar o número total de miniaturas
-        if (endIndex >= thumbnails.length) {
-            startIndex = Math.max(0, startIndex - (endIndex - thumbnails.length + 1));
-            endIndex = thumbnails.length - 1;
-        }
-
-        // Calcula o deslocamento necessário para centralizar a visualização de miniaturas
-        const offset = startIndex * thumbnailWidth;
-        // Calcula a largura total das miniaturas
-        const totalThumbnailsWidth = thumbnails.length * thumbnailWidth;
-        // Obtém a largura do container de miniaturas
-        const containerWidth = thumbnailContainer.clientWidth;
-
-        // Garante que o deslocamento não ultrapasse o limite do container
-        const maxOffset = Math.max(0, totalThumbnailsWidth + 20);
-        const clampedOffset = Math.min(maxOffset, offset);
-
-        // Aplica a transformação de deslocamento horizontal ao container de miniaturas
-        thumbnailContainer.style.transform = `translateX(-${clampedOffset}px)`;
-        // Define a transição suave para o deslocamento
-        thumbnailContainer.style.transition = 'transform 0.5s ease';
-    };
-
-    prevButtonDesktop.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateGallery();
-    });
-
-    nextButtonDesktop.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateGallery();
-    });
-
-    prevButtonMobile.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateGallery();
-    });
-
-    nextButtonMobile.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateGallery();
-    });
-
-    images.forEach((img, idx) => {
-        const thumbnail = document.createElement('img');
-        thumbnail.src = img.src;
-        thumbnail.alt = img.alt;
-        thumbnail.classList.add('thumbnail');
-        thumbnail.addEventListener('click', () => {
-            currentIndex = idx;
-            updateGallery();
-        });
-        thumbnailContainer.appendChild(thumbnail);
-    });
-
-    updateGallery();
     adjustGalleryAnimation(section);
 
+    const images = section.querySelectorAll('.gallery img');
     images.forEach(img => {
         img.addEventListener('click', () => {
             document.getElementById('fullscreenImage').src = img.src;
@@ -145,6 +196,7 @@ document.querySelectorAll('.gallery-section').forEach((section) => {
     });
 });
 
+// Evento para fechar o modo fullscreen
 document.getElementById('fullscreen').addEventListener('click', (event) => {
     if (event.target === document.getElementById('fullscreen') || event.target === document.querySelector('.fullscreen-close')) {
         document.getElementById('fullscreen').style.display = 'none';
@@ -152,20 +204,14 @@ document.getElementById('fullscreen').addEventListener('click', (event) => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.getElementById('welcome').classList.remove('hidden');
-});
-
-// Atualiza a galeria no resize da tela
+// Atualiza a galeria no redimensionamento da tela
 window.addEventListener('resize', () => {
     document.querySelectorAll('.gallery-section').forEach((section) => {
         adjustGalleryAnimation(section);
     });
 });
 
+// Ajuste o layout ao carregar e redimensionar a janela
 function adjustLayout() {
     const desktopContent = document.getElementById('desktop-content');
     const mobileContent = document.getElementById('mobile-content');
@@ -179,8 +225,5 @@ function adjustLayout() {
     }
 }
 
-// Ajustar o layout ao carregar a página
 window.addEventListener('load', adjustLayout);
-
-// Ajustar o layout ao redimensionar a janela
 window.addEventListener('resize', adjustLayout);
