@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Termos de Uso</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+
+        :root {
+            --form-bg: #fff;
+            --form-shadow: #00b050;
+            --font-size: 14pt;
+            --font-face: Arial, sans-serif;
+            --font-color: #2A293E;
+        }
+
+        body {
+            font-family: var(--font-face);
+            background: #8aff7b;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            color: var(--font-color);
+            height: 300px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #000;
+            border: 2px solid #0c6c1c;
+            box-shadow: 10px 10px 1px var(--form-shadow), 10px 10px 1px 1px rgba(0, 0, 0, 1);
+            background-color: #fff;
+            border-radius: 15px;
+            width: 50%;
+            height: 50%;
+            padding: 10px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .section {
+            background-color: var(--form-bg);
+            border: 2px solid #0c6c1c;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+            margin-bottom: 200px;
+            width: 800px;
+            margin: 0 auto;
+            box-shadow: 15px 15px 1px var(--form-shadow), 15px 15px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            bottom: 0;
+            margin: 0 auto;
+            width: 100%;
+            position: fixed;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content .left,
+        .footer-content .right {
+            display: flex;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .footer-content .left a {
+            border: none;
+            padding: 2px 20px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            line-height: calc(var(--font-size) * 2);
+            background-color: #fff;
+            letter-spacing: 2px;
+            transition: .2s all ease-in-out;
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 1);
+            box-shadow: 3px 3px 1px 1px #00b050, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+            color: #000;
+            cursor: pointer;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .left a:hover {
+            background-color: #00b050;
+            color: #fff;
+            box-shadow: 3px 3px 1px 1px #fff, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        .footer-content .right img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            vertical-align: center;
+        }
+
+        .footer-bottom {
+            border-top: 2px solid #8aff7b;
+            padding-top: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1300px) and (min-width: 600px) {
+            .container {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .page-title {
+                width: 70%;
+                font-size: 14px;
+            }
+
+            .container a{
+                width: 176px;
+                font-size: 16px;
+            }
+
+            .section {
+                width: 85%;
+                margin-bottom: 100px;
+            }
+
+            .footer{
+                padding: 0;
+                padding-bottom: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-content .left,
+            .footer-content .right {
+                flex: 1 1 calc(33.333% - 20px);
+                margin: 5px;
+                text-align: center;
+            }
+
+            .footer-content .left a {
+                padding: 2px 10px;
+                font-size: 14px;
+            }
+
+            .footer-content .right img {
+                width: 30px;
+                height: 30px;
+
+            }
+
+            .footer-content .right img {
+                margin: 0;
+            }
+
+            .footer-bottom {
+                margin-top: 0px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 599px){
+            .container {
+                padding: 10px;
+                font-size: 12px;
+            }
+            .page-title {
+                width: 70%;
+                font-size: 12px;
+            }
+
+            .container a{
+                width: 132px;
+                font-size: 12px;
+            }
+
+            .section {
+                width: 75%;
+                margin-bottom: 180px;
+            }
+
+            .footer{
+                padding: 0;
+                padding-bottom: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-content .left,
+            .footer-content .right {
+                flex: 1 1 calc(33.333% - 20px);
+                margin: 5px;
+                text-align: center;
+            }
+
+            .footer-content .left a {
+                padding: 2px 10px;
+                font-size: 14px;
+            }
+
+            .footer-content .right img {
+                width: 30px;
+                height: 30px;
+
+            }
+
+            .footer-content .right img {
+                margin: 0;
+            }
+
+            .footer-bottom {
+                margin-top: 0px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-title">
+        <h2>Termos de Uso</h2>
+    </div>
+    <div class="container">
+        <div class="section">
+
+            <h1>Termos de Uso do Assina IFSULDEMINAS</h1>
+            <h3>1. Introdução</h3>
+            Bem-vindo ao Assina IFSULDEMINAS! Estes Termos de Uso descrevem as regras e diretrizes para o uso do
+                nosso gerador de
+                assinaturas institucionais. Ao utilizar nosso serviço, você concorda com os termos estabelecidos neste
+                documento.
+            
+            <h3>2. Aceitação dos Termos</h3>
+            Ao acessar ou utilizar o Assina IFSULDEMINAS, você concorda em cumprir e estar vinculado a estes Termos
+                de Uso. Se
+                você não concorda com estes termos, por favor, não utilize nosso serviço.
+            <h3>3. Consentimento para Acesso aos Dados do Gmail</h3>
+            Para que possamos fornecer nossos serviços de forma eficiente, é necessário obter sua permissão explícita
+                para
+                acessar os dados do Gmail. Este acesso é utilizado exclusivamente para gerar e gerenciar suas
+                assinaturas de e-mail.
+                Garantimos que seus dados serão tratados com a máxima confidencialidade e segurança.
+            <h3>4. Coleta e Uso de Informações</h3>
+            Coletamos informações pessoais, como nome e e-mail, para melhorar nossos serviços e proporcionar uma
+                experiência
+                personalizada. Não compartilhamos suas informações com terceiros, exceto quando necessário para fornecer
+                nossos
+                serviços ou conforme exigido por lei.
+            <h3>5. Segurança dos Dados</h3>
+            Implementamos medidas de segurança robustas para proteger suas informações contra acesso, alteração,
+                divulgação ou
+                destruição não autorizados. Essas medidas incluem:
+            <ul>
+                <li>Criptografia de dados durante a transmissão e armazenamento.</li>
+                <li>Acesso restrito aos dados apenas por pessoal autorizado.</li>
+                <li>Auditorias regulares de nossos sistemas e processos de segurança.</li>
+            </ul>
+            <h3>6. Direitos do Usuário</h3>
+            Você tem o direito de acessar, corrigir ou excluir suas informações pessoais a qualquer momento. Se
+                desejar exercer
+                esses direitos, entre em contato conosco através das informações fornecidas abaixo.
+            <h3>7. Alterações nos Termos de Uso</h3>
+            Podemos atualizar estes Termos de Uso periodicamente. Qualquer alteração será comunicada em nosso site.
+                Recomendamos
+                que você reveja estes termos regularmente para se manter informado sobre quaisquer mudanças.
+            <h3>8. Limitação de Responsabilidade</h3>
+            Embora nos esforcemos para fornecer o melhor serviço possível, o Assina IFSULDEMINAS não se
+                responsabiliza por
+                quaisquer danos diretos, indiretos, incidentais ou consequenciais decorrentes do uso ou da incapacidade
+                de usar
+                nosso serviço.
+            <h3>9. Contato</h3>
+            Se tiver alguma dúvida, sugestão ou reclamação sobre nossos Termos de Uso, entre em contato conosco:<br>
+            E-mail: ascom@ifsuldeminas.edu.br<br> Telefone: (35) 3449-6194
+            <h3>10. Lei Aplicável</h3>
+            Estes Termos de Uso são regidos pelas leis do Brasil. Qualquer disputa decorrente destes termos será
+                resolvida
+                exclusivamente nos tribunais competentes no Brasil.
+            <h3>11. Conformidade com Regulamentos</h3>
+            Esta política está em conformidade com as leis e regulamentos aplicáveis de proteção de dados, incluindo
+                a Lei Geral
+                de Proteção de Dados (LGPD) do Brasil.
+        </div>
+        <br><br><br><br><br><br><br><br>
+    </div>
+</body>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="left"> <a href="https://sites.google.com/ifsuldeminas.edu.br/assina-ifsuldeminas/ajuda">Ajuda</a> <a
+                href="https://portal.ifsuldeminas.edu.br/index.php/comunicacao">Contato</a> </div>
+        <div class="right">
+            <a href="https://www.facebook.com/IFSULDEMINAS"><img
+                    src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/face_preto.png"
+                    alt="Facebook"></a>
+            <a href="https://www.instagram.com/ifsuldeminas/"><img
+                    src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/insta_preto.png"
+                    alt="Instagram"></a>
+            <a href="https://www.linkedin.com/school/if-sul-de-minas/"><img
+                    src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/linkedin_preto.png"
+                    alt="LinkeDin"></a>
+            <a href="https://www.youtube.com/@TVIFSULDEMINAS"><img
+                    src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/youtube_preto.png"
+                    alt="YouTube"></a>
+        </div>
+    </div>
+    <div class="footer-bottom"> &copy; 2024 Criado e Desenvolvido pela DICOM do IFSULDEMINAS. Todos os direitos
+        reservados. </div>
+</footer>
+
+</html>
