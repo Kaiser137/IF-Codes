@@ -5,28 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Assina IFSULDEMINAS</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 
         :root {
             --form-bg: #fff;
             --form-shadow: #00b050;
-            --font-size: 14pt;
+            --font-size: 10pt;
             --font-face: Arial, sans-serif;
             --font-color: #2A293E;
         }
 
         body {
+            width: 100%;
             font-family: var(--font-face);
             color: var(--font-color);
+
             display: grid;
-            justify-items: center;
+            justify-content: center;
             align-items: center;
             background: #8aff7b;
+
             --lightBtn: #FE016C;
             --lightBg: #fff;
             --lightColor: #232323;
@@ -109,24 +110,6 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        .page-title {
-            color: #000;
-            border: 2px solid #0c6c1c;
-            box-shadow: 10px 10px 1px var(--form-shadow), 10px 10px 1px 1px rgba(0, 0, 0, 1);
-            background-color: #fff;
-            border-radius: 15px;
-            height: 75%;
-            padding: 10px;
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
         }
 
         .modo-escuro {
@@ -135,6 +118,24 @@
             right: 40px;
         }
 
+        .page-title {
+            color: #000;
+            border: 2px solid #0c6c1c;
+            box-shadow: 10px 10px 1px var(--form-shadow), 10px 10px 1px 1px rgba(0, 0, 0, 1);
+            background-color: #fff;
+            border-radius: 15px;
+            width: 50%;
+            height: 50%;
+            padding: 10px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
         .section {
             background-color: var(--form-bg);
             border: 2px solid #0c6c1c;
@@ -142,6 +143,8 @@
             padding: 25px;
             margin-top: 25px;
             margin-bottom: 200px;
+            font-size: var(--font-size);
+            width: 800px;
             margin: 0 auto;
             box-shadow: 15px 15px 1px var(--form-shadow), 15px 15px 1px 2px rgba(0, 0, 0, 1);
         }
@@ -160,7 +163,7 @@
             color: black;
             cursor: pointer;
             border-radius: 5px;
-            width: 220px;
+            width: 80%;
             text-align: center;
             font-size: 18px;
             text-decoration: none;
@@ -178,6 +181,7 @@
             padding: 10px 0;
             text-align: center;
             bottom: 0;
+            left: 0;
             margin: 0 auto;
             width: 100%;
             position: fixed;
@@ -240,18 +244,15 @@
 
         @media (max-width: 1300px) and (min-width: 600px) {
             .container {
-                padding: 10px;
                 font-size: 14px;
+                margin-top: 0px;
             }
 
-            .page-title{
-                font-size: 24px;
-            }
-
-            .modo-escuro {
-                position: absolute;
-                top: 15px;
-                right: 15px;
+            .page-title {
+                width: 70%;
+                font-size: 16px;
+                margin-bottom: 30px;
+                margin-top: 30px;
             }
 
             label {
@@ -265,12 +266,12 @@
             }
 
             .container a {
-                width: 176px;
                 font-size: 16px;
             }
 
             .section {
-                margin-bottom: 100px;
+                width: 85%;
+                margin-bottom: 180px;
             }
 
             .footer {
@@ -312,17 +313,21 @@
 
         @media (max-width: 599px) {
             .container {
-                padding: 10px;
                 font-size: 12px;
+                margin-top: 0px;
             }
 
-            .page-title{
-                font-size: 20px;
+            .page-title {
+                width: 70%;
+                font-size: 12px;
+                margin-bottom: 30px;
+                margin-top: 30px;
             }
 
+            
             .modo-escuro {
                 position: absolute;
-                top: 15px;
+                top: 20px;
                 right: 15px;
             }
 
@@ -337,11 +342,11 @@
             }
 
             .container a {
-                width: 132px;
                 font-size: 12px;
             }
 
             .section {
+                width: 75%;
                 margin-bottom: 180px;
             }
 
@@ -385,18 +390,17 @@
 </head>
 
 <body>
-
-    <div class="page-title col-6">
-        Seja Bem-vindo(a) ao Assina IFSULDEMINAS!
-    </div>
-
-    <div class="modo-escuro">
-        <input class="container_toggle" type="checkbox" id="theme-toggle" name="mode">
-        <label for="theme-toggle">Toggle Theme</label>
-    </div>
-
     <div class="container">
-        <div class="section col-sm-9">
+        <div class="page-title">
+            Seja Bem-vindo(a) ao Assina IFSULDEMINAS!
+        </div>
+    
+        <div class="modo-escuro">
+            <input class="container_toggle" type="checkbox" id="theme-toggle" name="mode">
+            <label for="theme-toggle">Toggle Theme</label>
+        </div>
+
+        <div class="section w-75 p-3">
             Estamos muito felizes em apresentar a você uma ferramenta inovadora criada e desenvolvida pela Diretoria de
             Comunicação (DICOM) do IFSULDEMINAS. O Assina IFSULDEMINAS é um gerador de assinaturas que
             visa proporcionar praticidade e profissionalismo nas comunicações institucionais.<br><br>
@@ -421,9 +425,10 @@
 
             Clique no botão abaixo para começar a criar sua assinatura personalizada!<br><br>
 
-            <a href="https://sites.google.com/ifsuldeminas.edu.br/assina-ifsuldeminas/gerador">Gerar Assinatura</a>
+            <a href="https://sites.google.com/ifsuldeminas.edu.br/assina-ifsuldeminas/gerador" class="btn btn-lg btn-block">Gerar Assinatura</a>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -434,33 +439,33 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-    <script>
-        const toggle = document.getElementById('theme-toggle');
-
-        // Verifica o estado do modo escuro ao carregar a página
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            document.body.setAttribute('data-theme', 'dark');
-            toggle.checked = true;
-        }
-
-        toggle.addEventListener('change', function () {
-            if (this.checked) {
+        <script>
+            const toggle = document.getElementById('theme-toggle');
+            
+            // Verifica o estado do modo escuro ao carregar a página
+            if (localStorage.getItem('dark-mode') === 'enabled') {
                 document.body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('dark-mode', 'enabled');
-            } else {
-                document.body.removeAttribute('data-theme');
-                localStorage.setItem('dark-mode', 'disabled');
+                toggle.checked = true;
             }
-            trans();
-        });
-
-        let trans = () => {
-            document.documentElement.classList.add('transition');
-            window.setTimeout(() => {
-                document.documentElement.classList.remove('transition');
-            }, 1000)
-        }
-    </script>
+        
+            toggle.addEventListener('change', function () {
+                if (this.checked) {
+                    document.body.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('dark-mode', 'enabled');
+                } else {
+                    document.body.removeAttribute('data-theme');
+                    localStorage.setItem('dark-mode', 'disabled');
+                }
+                trans();
+            });
+        
+            let trans = () => {
+                document.documentElement.classList.add('transition');
+                window.setTimeout(() => {
+                    document.documentElement.classList.remove('transition');
+                }, 1000)
+            }
+        </script>        
 
     <footer class="footer">
         <div class="footer-content">
