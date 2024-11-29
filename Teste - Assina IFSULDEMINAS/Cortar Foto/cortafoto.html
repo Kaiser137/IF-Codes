@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Dimensionador de foto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+
+        :root {
+            --form-bg: #fff;
+            --form-shadow: #00b050;
+            --font-corpo: 14px;
+            --font-page-title: 24px;
+            --font-face: Arial, sans-serif;
+            --font-color: #2A293E;
+            --lightBtn: #8aff7b;
+            --lightBg: #fff;
+            --lightColor: #232323;
+        }
+
+        body {
+            font: var(--font-face);
+            font-size: var(--font-corpo);
+            color: var(--font-color);
+            background-color: #8aff7b;
+            align-items: center;
+            justify-items: center;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body[data-theme='dark'] {
+            background-color: #880093;
+            --lightBtn: #FFBD07;
+            --lightColor: #fff;
+        }
+
+        body[data-theme='dark'] section {
+            box-shadow: 15px 15px 1px #b866be, 15px 15px 1px 2px #000;
+            background-color: #F9F9F8;
+        }
+
+        body[data-theme='dark'] .page-title {
+            box-shadow: 10px 10px 1px #b866be, 10px 10px 1px 2px #000;
+            background-color: #F9F9F8;
+        }
+
+        body[data-theme='dark'] section a {
+            border: 1px solid rgba(0, 0, 0, 1);
+            box-shadow: 3px 3px 1px 1px #b866be, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+            background-color: #F9F9F8;
+        }
+
+        body[data-theme='dark'] section a:hover {
+            background-color: #b866be;
+            box-shadow: 3px 3px 1px 1px #fff, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        body[data-theme='dark'] footer .left a {
+            border: 1px solid rgba(0, 0, 0, 1);
+            box-shadow: 3px 3px 1px 1px #b866be, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+            background-color: #F9F9F8;
+        }
+
+        body[data-theme='dark'] footer .left a:hover {
+            background-color: #b866be;
+            box-shadow: 3px 3px 1px 1px #fff, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        body[data-theme='dark'] .footer-bottom {
+            border-top: 2px solid #880093;
+        }
+
+        body[data-theme='dark'] .modo_escuro {
+            opacity: 1;
+        }
+
+        body[data-theme='dark'] .modo_claro {
+            opacity: 0.5;
+        }
+
+        .page-title {
+            font-size: var(--font-page-title);
+            color: var(--font-color);
+            text-align: center;
+            display: inline;
+            font-weight: bold;
+            width: 80%;
+            border: 2px solid #000;
+            box-shadow: 10px 10px 1px var(--form-shadow), 10px 10px 1px 2px rgba(0, 0, 0, 1);
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 30px auto;
+            font-size: 28px;
+        }
+
+        input[type=checkbox] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 55px;
+            height: 30px;
+            background: var(--lightBtn);
+            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            border-radius: 100px;
+            position: relative;
+        }
+
+        label:after {
+            content: '';
+            background: #fff;
+            width: 20px;
+            height: 20px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 4px;
+            transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) 320ms;
+        }
+
+        input:checked+label {
+            background: #880093;
+        }
+
+        input:checked+label:after {
+            left: calc(100% - 5px);
+            -webkit-transform: translateX(-100%);
+            -moz-transform: translateX(-100%);
+            -ms-transform: translateX(-100%);
+            -o-transform: translateX(-100%);
+            transform: translateX(-100%);
+        }
+
+        html.transition,
+        html.transition *,
+        html.transition *:before,
+        html.transition *:after {
+            transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
+            transition-delay: 0 !important;
+        }
+
+        section {
+            border: 2px solid #000;
+            border-radius: 15px;
+            padding: 25px;
+            background-color: #FFF;
+            box-shadow: 15px 15px 1px var(--form-shadow), 15px 15px 1px 2px #000;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        section a {
+            display: block;
+            margin: 0 auto;
+            line-height: calc(var(--font-size) * 2);
+            padding: 10px 10px;
+            background: #fff;
+            letter-spacing: 2px;
+            transition: .2s all ease-in-out;
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 1);
+            box-shadow: 3px 3px 1px 1px #00b050, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+            color: black;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 50%;
+            text-align: center;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        section a:hover {
+            background: #00b050;
+            text-decoration: none;
+            color: white;
+            box-shadow: 3px 3px 1px 1px #fff, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            bottom: 0;
+            left: 0;
+            margin: 0 auto;
+            width: 100%;
+            position: fixed;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content .left,
+        .footer-content .right {
+            display: flex;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .footer-content .left a {
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            line-height: calc(var(--font-size) * 2);
+            background-color: #fff;
+            letter-spacing: 2px;
+            transition: .2s all ease-in-out;
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 1);
+            box-shadow: 3px 3px 1px 1px #00b050, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+            color: #000;
+            cursor: pointer;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .left a:hover {
+            background-color: #00b050;
+            color: #fff;
+            box-shadow: 3px 3px 1px 1px #fff, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        .footer-content .right img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            vertical-align: center;
+        }
+
+        .footer-content .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-content .center img {
+            width: 40px;
+            height: 40px;
+            vertical-align: center;
+        }
+
+        .modo_escuro{
+            opacity: 0.5;
+        }
+
+        .footer-bottom {
+            border-top: 2px solid #8aff7b;
+            padding-top: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1300px) and (min-width: 600px) {
+            .page-title {
+                width: 70%;
+                font-size: 24px;
+            }
+
+            label {
+                width: 40px;
+                height: 20px;
+            }
+
+            label:after {
+                width: 10px;
+                height: 10px;
+            }
+
+            section {
+                margin-bottom: 220px;
+            }
+
+            section a {
+                font-size: 14px;
+            }
+
+            .footer {
+                padding: 0;
+                padding-bottom: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-content .left,
+            .footer-content .center,
+            .footer-content .right {
+                flex: 1 1 calc(33.333% - 20px);
+                margin: 5px;
+                text-align: center;
+            }
+
+            .footer-content .left a {
+                padding: 5px 10px;
+                font-size: 14px;
+            }
+
+            .footer-content .center {
+                margin-top: 10px;
+            }
+
+            .footer-content .right img {
+                width: 30px;
+                height: 30px;
+
+            }
+
+            .footer-content .right img {
+                margin: 0;
+            }
+
+            .footer-bottom {
+                margin-top: 0px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 599px) {
+            .page-title {
+                width: 70%;
+                font-size: 18px;
+            }
+
+            label {
+                width: 35px;
+                height: 20px;
+            }
+
+            label:after {
+                width: 10px;
+                height: 10px;
+            }
+
+            section {
+                margin-bottom: 220px;
+            }
+
+            section a {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+
+            .footer {
+                padding: 0;
+                padding-bottom: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-content .left,
+            .footer-content .center,
+            .footer-content .right {
+                flex: 1 1 calc(33.333% - 20px);
+                margin: 5px;
+                text-align: center;
+            }
+
+            .footer-content .center {
+                margin-top: 10px;
+            }
+
+            .footer-content .left a {
+                padding: 5px 10px;
+                font-size: 14px;
+            }
+
+            .footer-content .right img {
+                width: 30px;
+                height: 30px;
+
+            }
+
+            .footer-content .right img {
+                margin: 0;
+            }
+
+            .footer-bottom {
+                margin-top: 0px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="page-title col-9">
+            Dimensionador de foto
+        </div>
+        <div class="row ">
+            <section class="col-7">
+                
+            </section>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="left">
+                    <a href="https://sites.google.com/ifsuldeminas.edu.br/assina-ifsuldeminas/ajuda">Ajuda</a>
+                    <a href="https://sites.google.com/ifsuldeminas.edu.br/assina-ifsuldeminas/contato">Contato</a>
+                </div>
+                <div class="center">
+                    <div class="modo_claro">
+                    <img src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/modo_claro.png"
+                        alt="Modo Claro">
+                    </div>
+                    <input class="container_toggle" type="checkbox" id="theme-toggle" name="mode">
+                    <label for="theme-toggle">Toggle Theme</label>
+                    <div class="modo_escuro">
+                    <img src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/modo_escuro.png"
+                        alt="Modo Escuro">
+                    </div>
+                </div>
+                <div class="right">
+                    <a href="https://www.facebook.com/IFSULDEMINAS"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/face_preto.png"
+                            alt="Facebook"></a>
+                    <a href="https://www.instagram.com/ifsuldeminas/"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/insta_preto.png"
+                            alt="Instagram"></a>
+                    <a href="https://www.linkedin.com/school/if-sul-de-minas/"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/linkedin_preto.png"
+                            alt="LinkeDin"></a>
+                    <a href="https://www.youtube.com/@TVIFSULDEMINAS"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/youtube_preto.png"
+                            alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-bottom"> &copy; 2024 Criado e Desenvolvido pela DICOM do IFSULDEMINAS. Todos os direitos
+                reservados. </div>
+        </footer>
+
+        <script>
+            const toggle = document.getElementById('theme-toggle');
+
+            // Verifica o estado do modo escuro ao carregar a página
+            if (localStorage.getItem('dark-mode') === 'enabled') {
+                document.body.setAttribute('data-theme', 'dark');
+                toggle.checked = true;
+            }
+
+            toggle.addEventListener('change', function () {
+                if (this.checked) {
+                    document.body.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('dark-mode', 'enabled');
+                } else {
+                    document.body.removeAttribute('data-theme');
+                    localStorage.setItem('dark-mode', 'disabled');
+                }
+                trans();
+            });
+
+            let trans = () => {
+                document.documentElement.classList.add('transition');
+                window.setTimeout(() => {
+                    document.documentElement.classList.remove('transition');
+                }, 10000)
+            }
+        </script>
+</body>
+
+</html>
