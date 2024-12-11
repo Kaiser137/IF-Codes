@@ -243,7 +243,7 @@
         }
 
         .Assinaturaimg img {
-            width: 550px;
+            width: 100%;
             height: auto;
         }
 
@@ -426,7 +426,7 @@
                     </div>
 
                     <div>
-                        <label for="celular">Celular:</label>
+                        <label for="celular">Celular (Opcional):</label>
                         <input type="tel" id="celular" name="celular" maxlength="16">
                     </div>
                 </div>
@@ -456,11 +456,19 @@
                 </div>
 
                 <div id="infoLocalTrabalho" style="display: none;">
+                  <div class="row">
+                  <div>
                     <label for="setor">Selecione o Setor:</label>
                     <select id="setor" name="setor" required>
                         <option value="" disabled selected>Selecione o setor!</option>
                     </select>
                     <small class="error-message">* Este campo é obrigatório.</small>
+                  </div>
+                  <div>
+                        <label for="emailSetor">E-mail do Setor (Opcional):</label>
+                        <input type="email" id="emailSetor" name="emailSetor">
+                  </div>
+                  </div>
 
                     <h3>Informações do Local de Trabalho:</h3>
                     <div style="text-align: center;">
@@ -600,7 +608,8 @@
                 cargo: form.cargo.value,
                 telefone: form.telefone.value,
                 celular: form.celular.value || '', // Previne campos vazios
-                email: form.email.value,
+                email: form.email.value || '',
+                emailSetor: form.emailSetor.value || '',
                 endereco: form.endereco.value,
                 site: form.site.value || '', // Previne campos vazios
                 telefoneLocal: form.telefoneLocal.value || '',
@@ -642,6 +651,18 @@
                       <img src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/telefone.png" alt="Telefone" width="15">  Telefone: <a href="tel:${dados.telefone}" style="color: black; font-size: 13px;">
                             <strong>${dados.telefone}</strong></a>
                     </div>
+        `;
+            }
+
+            // Geração de foto (se a opção de incluir estiver marcada)
+            let emailSetorHtml = '';
+            if (dados.emailSetor) {
+                emailSetorHtml = `
+            <div style="color: black; margin-bottom: 10px; font-size: 13px; vertical-align: middle;">
+            <img src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Icones/emailsSetor.png" alt="E-mail" width="15"> 
+            E-mail do Setor: <a href="mailto:${dados.emailSetor}" style="color: #00b050; font-size: 13px;">
+                <strong>${dados.emailSetor}</strong></a>
+        </div>
         `;
             }
 
@@ -706,6 +727,7 @@
                     ${celularHtml}
                     ${emailHtml}
                     ${setorHtml}
+                    ${emailSetorHtml}
                     ${siteSetorHtml}
                 </td>
                 <td colspan="1" style="border-left: 2px solid #00b050; width: 250px;">
@@ -734,7 +756,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding-top: 20px; text-align: center; width: 700px;">
-                    <img src="${dados.imgFinal}" alt="Imagem Final" width="550px">
+                    <img src="${dados.imgFinal}" alt="Imagem Final">
                 </td>
             </tr>
         </table>
