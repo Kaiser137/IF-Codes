@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestibular com slide</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght&#64;14..32,100..900&display=swap');
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        .corpo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container-cartao {
+            max-width: 950px;
+            margin: 0 60px 35px;
+            padding: 10px 35px 10px 0px;
+            overflow: hidden;
+        }
+        .lista-cartao {
+            list-style: none;
+            display: flex;
+        }
+        .link-cartao {
+            user-select: none;
+            display: block;
+            background-color: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            transition: 0.2s ease;
+        }
+        .link-cartao:hover {
+            border-color: #5372F0;
+        }
+        .imagem-cartao {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .etiqueta {
+            color: #5372F0;
+            padding: 8px 16px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 16px 0 18px;
+            background: #DDE4FF;
+            width: fit-content;
+            border-radius: 50px;
+        }
+        .etiqueta.Superior { background: orange; color: #000; }
+        .etiqueta.Pos { background: aqua; color: #fff; }
+        .etiqueta.Estagio { background: red; color: #fff; }
+        .etiqueta.Intercambio { background: yellow; color: #000; }
+        .etiqueta.Fic { background: fuchsia; color: #fff; }
+        .titulo-cartao {
+            font-size: 1.19rem;
+            font-weight: 600;
+            color: #000;
+        }
+        .botao-cartao {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            margin: 30px 0 5px;
+            color: #5372F0;
+            border: 2px solid #5372F0;
+            background: none;
+            cursor: pointer;
+            transform: rotate(-45deg);
+            transition: 0.4s ease;
+        }
+        .link-cartao:hover .botao-cartao {
+            background: #5372F0;
+            color: #fff;
+        }
+        .swiper-pagination-bullet {
+            height: 13px;
+            width: 13px;
+            opacity: 0.5;
+            background: #5372F0;
+        }
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+        .swiper-slide-button {
+            color: #5372F0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container-cartao {
+                margin: 0 10px 25px;
+            }
+            .swiper-slide-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="corpo">
+    <div class="container-swiper swiper">
+        <div class="container-cartao">
+            <ul class="lista-cartao swiper-wrapper">
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/mat%C3%A9rias_2022/encceja/encceja_-.jpg" alt="Imagem do Slider" class="imagem-cartao">
+                        <p class="etiqueta Superior">Superior</p>
+                        <h2 class="titulo-cartao">TESTE TESTE TESTE</h2>
+                        <button class="botao-cartao material-symbols-rounded">arrow_forward</button>
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/pos-gradua%C3%A7%C3%A3o/2024/Banner_-_p%C3%B3s-gradua%C3%A7%C3%A3o_CAPA.png" alt="Imagem do Slider" class="imagem-cartao">
+                        <p class="etiqueta Pos">Pós-Graduação</p>
+                        <h2 class="titulo-cartao">TESTE TESTE TESTE</h2>
+                        <button class="botao-cartao material-symbols-rounded">arrow_forward</button>
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/Est%C3%A1gio_n%C3%A3o_obrigat%C3%B3rio_-_diversas_%C3%A1reas/2024/PORTAL_ESTAGIO_230X136.png" alt="Imagem do Slider" class="imagem-cartao">
+                        <p class="etiqueta Estagio">Estágio</p>
+                        <h2 class="titulo-cartao">TESTE TESTE TESTE</h2>
+                        <button class="botao-cartao material-symbols-rounded">arrow_forward</button>
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/conteudo/Interc%C3%A2mbio/INTERCAMBIO_IFSULDEMINAS.png" alt="Imagem do Slider" class="imagem-cartao">
+                        <p class="etiqueta Intercambio">Intercambio</p>
+                        <h2 class="titulo-cartao">TESTE TESTE TESTE</h2>
+                        <button class="botao-cartao material-symbols-rounded">arrow_forward</button>
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/auxilios_estudantis/2023/PORTAL_FIC_230X136.png" alt="Imagem do Slider" class="imagem-cartao">
+                        <p class="etiqueta Fic">Fic</p>
+                        <h2 class="titulo-cartao">TESTE TESTE TESTE</h2>
+                        <button class="botao-cartao material-symbols-rounded">arrow_forward</button>
+                    </a>
+                </li>
+            </ul>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-slide-button swiper-button-prev"></div>
+            <div class="swiper-slide-button swiper-button-next"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        new Swiper('.container-cartao', {
+            loop: true,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+    </script>
+</div>
+</body>
+</html>

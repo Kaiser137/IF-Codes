@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestibular com slide</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght&#64;14..32,100..900&display=swap');
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        .corpo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container-cartao {
+            max-width: 950px;
+            margin: 0 60px 35px;
+            padding: 10px 35px 10px 0px;
+            overflow: hidden;
+        }
+        .lista-cartao {
+            list-style: none;
+            display: flex;
+        }
+        .link-cartao {
+            user-select: none;
+            display: block;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            transition: 0.2s ease;
+        }
+        .link-cartao:hover {
+            border-color: #5372F0;
+        }
+        .imagem-cartao {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            aspect-ratio: 9/16;
+        }
+       
+        .link-cartao:hover{
+            color: #fff;
+        }
+
+        .swiper-pagination-bullet {
+            height: 13px;
+            width: 13px;
+            opacity: 0.5;
+            background: #5372F0;
+        }
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+
+        .swiper-slide-button {
+            color: #5372F0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container-cartao {
+                margin: 0 10px 25px;
+            }
+            .swiper-slide-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="corpo">
+    <div class="container-swiper swiper">
+        <div class="container-cartao">
+            <ul class="lista-cartao swiper-wrapper">
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/Vestibular_2025-1%C2%BA/Bot%C3%B5es_Vestibular_2.2025-03.png" alt="Imagem do Slider" class="imagem-cartao">
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/Vestibular_2025-1%C2%BA/Bot%C3%B5es_Vestibular_2.2025-02.png" alt="Imagem do Slider" class="imagem-cartao">
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/Vestibular_2025-1%C2%BA/Bot%C3%B5es_Vestibular_2.2025_Prancheta_1.png" alt="Imagem do Slider" class="imagem-cartao">
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/Vestibular_2025-1%C2%BA/Bot%C3%B5es_Vestibular_2.2025-04.png" alt="Imagem do Slider" class="imagem-cartao">
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#" class="link-cartao">
+                        <img src="https://portal.ifsuldeminas.edu.br/images/Vestibular_2025-1%C2%BA/Bot%C3%B5es_Vestibular_2.2025-06_menor.png" alt="Imagem do Slider" class="imagem-cartao">
+                    </a>
+                </li>
+            </ul>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-slide-button swiper-button-prev"></div>
+            <div class="swiper-slide-button swiper-button-next"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        new Swiper('.container-cartao', {
+            loop: true,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: { slidesPerView: 3 }
+            }
+        });
+    </script>
+</div>
+</body>
+</html>
