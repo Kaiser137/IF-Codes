@@ -1,0 +1,765 @@
+<style>
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            background-color: #0c6c1c;
+            color: #fff;
+            padding: 20px;
+            margin: 0 -20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .page-title-image {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title-image img {
+            max-width: 50px;
+            height: auto;
+        }
+
+        .section {
+            border: 2px solid #0c6c1c;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            transition: opacity 0.5s ease, transform 0.3s;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .section.active:hover {
+            transform: scale(1.02);
+        }
+
+        .section h3 {
+            color: #0c6c1c;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .section a {
+            color: #0000ff;
+            text-decoration: none;
+        }
+
+        .section a:hover {
+            text-decoration: underline;
+        }
+
+        .secao_menu {
+            border: 2px solid #0c6c1c;
+            border-bottom-left-radius: 10px 10px;
+            border-bottom-right-radius: 10px 10px;
+            padding: 25px;
+            margin-top: -20px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .secao_menu:hover {
+            transform: scale(1.02);
+        }
+
+        .secao_menu h3 {
+            color: #0c6c1c;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .secao_menu p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .secao_menu a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #0c6c1c;
+        }
+
+        .secao_menu a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-linha {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-linha a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 1px solid #0c6c1c;
+            border-radius: 15px;
+            margin: 0 10px;
+            display: inline-block;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .menu-linha a:hover {
+            color: #0c6c1c;
+            background-color: #fff;
+            transform: scale(1.1);
+        }
+
+        #mobile-menu {
+            display: none;
+            text-align: center;
+        }
+
+        .social-media-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .social-media-container h3 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #0c6c1c;
+        }
+
+        .social-media-container .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .social-media-container .social-links a {
+            display: block;
+            margin: 0 10px;
+        }
+
+        .social-media-container .social-links img {
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
+            border-radius: 15px;
+        }
+
+        .social-media-container img {
+            transition: transform 0.2s;
+        }
+
+        .social-media-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .social-media-container-mobile {
+            display: none;
+        }
+
+        .social-media-container-mobile h3 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #0c6c1c;
+        }
+
+        .social-media-container-mobile .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .social-media-container-mobile .social-links a {
+            display: block;
+            margin: 0 10px;
+        }
+
+        .social-media-container-mobile .social-links img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            border-radius: 15px;
+        }
+
+        .social-media-container-mobile img {
+            transition: transform 0.2s;
+        }
+
+        .social-media-container-mobile img:hover {
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .button-container a {
+            flex: 1 1 calc(33.333% - 20px);
+            margin: 5px;
+            text-align: center;
+        }
+
+        .button-container a img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.2s;
+        }
+
+        .button-container a:hover img {
+            transform: scale(1.1);
+        }
+
+        @media (min-width:601px) and (max-width: 979px) {
+            .button-container a {
+                flex: 1 1 calc(30% - 20px);
+                margin: 5px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section p {
+                font-size: 14px;
+            }
+
+            .custom-menu {
+                flex-direction: column;
+            }
+
+            .secao_menu a {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .menu-linha a {
+                font-size: 12px;
+                padding: 10px 20px;
+            }
+
+            .menu-linha a:hover {
+                color: #0c6c1c;
+                background-color: #fff;
+                transform: scale(1.1);
+            }
+
+            #desktop-menu {
+                display: none;
+            }
+
+            #mobile-menu {
+                display: flex;
+                justify-content: center;
+            }
+
+            .page-title-image img {
+                max-width: 33px;
+                height: auto;
+            }
+
+            .page-title-image {
+                position: absolute;
+                right: 20px;
+                top: 70%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button-container a {
+                flex: none;
+                width: 80%;
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .social-media-container-mobile {
+                display: block;
+            }
+
+            .social-media-container {
+                display: none;
+            }
+        }
+    </style>
+<div class="content">
+        <h2 class="page-title">
+            Bem-vindo(a) à Diretoria de Comunicação!
+            <a href="https://portal.ifsuldeminas.edu.br/index.php" class="page-title-image" data-target="target-div">
+                <img src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Emoji%20-%20titulo/home.png"
+                    alt="Home">
+            </a>
+        </h2>
+        <div class="secao_menu">
+            <h3 style="text-align: center; margin-top: -1px;">
+                Menu
+            </h3>
+            <div style="text-align: center;">
+                Clique no menu desejado!
+            </div><br>
+            <div id="desktop-menu">
+                <div class="custom-menu">
+                    <div class="menu-linha">
+                        <a href="#sobre" data-target="sobre">SOBRE</a>
+                        <a href="#dicom-reitoria" data-target="dicom-reitoria">DICOM REITORIA</a>
+                        <a href="#ascom-campi" data-target="ascom-campi">ASCOM CAMPI</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#manuais-normativos-logotipo" data-target="manuais-normativos-logotipo">MANUAIS,
+                            NORMATIVOS E LOGOTIPO</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#termos-uso-imagem" data-target="termos-uso-imagem">TERMOS DE USO DA IMAGEM</a>
+                        <a href="#solicitacao-servicos" data-target="solicitacao-servicos">SERVIÇOS DA DICOM</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#imprensa" data-target="imprensa">IMPRENSA</a>
+                        <a href="#redes-sociais" data-target="redes-sociais">REDES SOCIAIS</a>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu">
+                <div class="custom-menu">
+                    <div class="menu-linha">
+                        <a href="#sobre" data-target="sobre">SOBRE</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#dicom-reitoria" data-target="dicom-reitoria">DICOM REITORIA</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#ascom-campi" data-target="ascom-campi">ASCOM CAMPI</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#manuais-normativos-logotipo" data-target="manuais-normativos-logotipo">MANUAIS,
+                            NORMATIVOS E LOGOTIPO</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#termos-uso-imagem" data-target="termos-uso-imagem">TERMOS DE USO DA IMAGEM</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#solicitacao-servicos" data-target="solicitacao-servicos">SERVIÇOS DA DICOM</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#imprensa" data-target="imprensa">IMPRENSA</a>
+                    </div>
+                    <div class="menu-linha">
+                        <a href="#redes-sociais" data-target="redes-sociais">REDES SOCIAIS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section active" id="target-div">
+            <h3>
+                Seja Bem vindo a Dicom!
+            </h3>
+            <div>Estamos felizes em recebê-lo em nosso espaço dedicado à comunicação e à gestão de informações. A
+                Diretoria de Comunicação desempenha um papel vital em conectar a nossa organização com o público,
+                promovendo a transparência e a colaboração.</div><br>
+
+            <div>Nesta página, você encontrará informações detalhadas sobre nossos projetos, iniciativas e as mais
+                recentes atualizações. Nosso objetivo é garantir que você esteja sempre informado e engajado com o que
+                acontece em nossa organização.</div><br>
+
+            <div>
+                As atividades de comunicação no IFSULDEMINAS estão a cargo da Diretoria de Comunicação (Dicom),
+                localizada na Reitoria, e das seis Assessorias de Comunicação (Ascom), instaladas nos campi.
+                No nível institucional, a Dicom é a responsável pelo planejamento, coordenação, execução e avaliação das
+                ações de comunicação social e de marketing do IFSULDEMINAS, como as campanhas de ingresso de novos
+                estudantes. Já as Ascom, além de auxiliar na execução das ações institucionais nos campi, têm autonomia
+                para criar e realizar atividades independentes e locais.
+            </div>
+
+            <div>Explore nossa página para descobrir mais sobre nossas atividades, equipes e como estamos trabalhando
+                para
+                melhorar a comunicação interna e externa. Se você tiver alguma dúvida ou precisar de mais informações,
+                não hesite em entrar em contato conosco.</div><br>
+
+            <div>Agradecemos sua visita e esperamos que você aproveite sua experiência em nossa página!</div><br>
+
+            <div>Atenciosamente,</div>
+
+            <div><strong>Equipe da Diretoria de Comunicação</strong></div>
+        </div>
+        <div class="section" id="sobre">
+            <h3>Sobre a Dicom</h3>
+            <p>A Dicom é responsável pelo planejamento, coordenação, execução e avaliação de projetos e
+                atividades na área de comunicação social e de marketing com os públicos interno e externo,
+                tanto no âmbito local (da própria Reitoria) como no âmbito institucional, ou seja, englobando
+                todas as unidades do IFSULDEMINAS.</p><br>
+
+            Alguns dos principais objetivos da Dicom são:<br><br>
+            <div style="margin-left: 10px;">
+                - Divulgar os indicadores, diferenciais institucionais e oportunidades geradas pelo IFSULDEMINAS;<br>
+                - Conceber e desenvolver campanhas de ingresso para captar novos estudantes;<br>
+                - Coordenar diversos canais de comunicação institucionais;<br>
+                - Promover a comunicação interna;<br>
+                - Desenvolver o marketing institucional para gerar relacionamento de qualidade com seus públicos e o
+                engajamento da comunidade acadêmica e da sociedade em geral;<br>
+                - Fortalecer a imagem do IFSULDEMINAS.<br>
+            </div><br>
+
+            <p>
+                Com esses propósitos, a Dicom realiza atividades envolvendo assessoria de imprensa, jornalismo, relações
+                públicas, produção audiovisual, programação visual, publicidade, propaganda e marketing de mídias
+                sociais.
+            </p>
+        </div>
+
+        <div class="section" id="dicom-reitoria">
+            <h3>Equipe e Estrutura da Dicom</h3>
+            <p>A área de comunicação do IFSULDEMINAS é composta pela Diretoria de Comunicação, localizada na Reitoria, e
+                pelas Assessorias de Comunicação nos campi. As equipes de comunicação são responsáveis por gerenciar os
+                canais de comunicação e produzir estratégias de comunicação que possam informar, engajar e atrair os
+                públicos de interesse. Também desempenham um papel fundamental na captação de alunos e parceiros, com o
+                desenvolvimento de campanhas de publicidade para divulgação dos cursos e programas oferecidos pelo
+                IFSULDEMINAS.</p><br>
+            <h3>Equipe de Comunicação da Reitoria</h3>
+            <div class="team-list">
+                <p style="font-size: large; color: #000;">
+                    <strong>Contatos Gerais:</strong>
+                </p>
+                <div><strong>E-mail: </strong> ascom@ifsuldeminas.edu.br</div>
+                <div><strong>Agenda: </strong><a
+                        href="https://portal.ifsuldeminas.edu.br/index.php/institucional-geral/6563-agenda-dicom">Confira
+                        a Agenda da Comunicação!</a></div>
+                <div><strong>Telefone: </strong> (35) 3449-6194</div>
+                <div><strong>Horários: </strong>
+                    <a
+                        href="https://docs.google.com/spreadsheets/d/1eqEmkETIYSA_hNvkuj8J9g3C0J1UjxnOzohSBg_oguU/edit#gid=422942098">
+                        Confira os horários de cada servidor da comunicação!
+                    </a>
+                </div><br>
+                <div><strong>Diretoria de Comunicação</strong><br><img src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/Jacssane.png"
+                    alt="Foto da Diretora de Comunicação"><br>Jacssane do Couto Andrade - Diretora de
+                    Comunicação<br>E-mail: jacssane.couto@ifsuldeminas.edu.br<br>Telefone: (35) 3449-6194
+                </div><br>
+
+                <div><strong>Coordenadoria de Projetos de Comunicação</strong><br>Matheus Borges de Paiva -
+                    Coordenador<br>E-mail: matheus.paiva@ifsuldeminas.edu.br<br><br>Ana Carolina Branco de Lima -
+                    Coordenadora substituta<br>E-mail: ana.lima@ifsuldeminas.edu.br</div><br>
+
+                <div><strong>Jornalismo</strong><br>Renata Cunha Bruno da Silveira - Jornalista<br>E-mail:
+                    renata.silveira@ifsuldeminas.edu.br<br><br>Monalisa Aparecida Pereira - Revisora de Texto<br>E-mail:
+                    monalisa.pereira@ifsuldeminas.edu.br<br><br>Giselle Viana - Técnica em Secretariado<br>E-mail:
+                    giselle.viana@ifsuldeminas.edu.br</div><br>
+
+
+                <div><strong>Programação Visual</strong><br>Carlos Gabriel Pesoti - Programador Visual<br>E-mail:
+                    carlosgabriel.pesoti@ifsuldeminas.edu.br</div><br>
+
+
+                <div><strong>Audiovisual</strong><br>Pedro Vitor Silva de Carvalho - Editor de TV e Vídeo<br>E-mail:
+                    pedrovitor.carvalho@ifsuldeminas.edu.br</div><br>
+
+
+                <div><strong>Estagiário</strong><br>Cezar Vitor Leite Junior<br>E-mail: cezar.junior@ifsuldeminas.edu.br
+                </div><br>
+
+                <div>Andre Ferreira da Mota - Técnico em
+                    Secretariado<br>E-mail: andre.mota@ifsuldeminas.edu.br
+                </div>
+            </div><br>
+        </div>
+
+        <div class="section" id="ascom-campi">
+            <h3>
+                Equipe de Comunicação dos Campi
+            </h3>
+            <div>
+                Conheça a equipe que está por trás da comunicação em cada um dos nossos campi! Eles são responsáveis
+                por manter todos informados e garantir que as mensagens cheguem de forma clara e eficiente.
+            </div><br>
+            <div>
+                <strong>Carmo de Minas e Campus Três Corações</strong> - Não há o setor de Ascom estruturado, as
+                atividades
+                relacionadas à comunicação
+                são de responsabilidade da Dicom, com o apoio esporádico e operacional de servidores do próprio campus.
+            </div>
+            <div>
+                Se você precisa de ajuda ou quer entrar em contato com a equipe do seu campus,
+                clique no botão abaixo!
+            </div>
+            <div class="button-container" style="justify-content: center;">
+                <div><a href="https://portal.ifsuldeminas.edu.br/index.php/dicom/6574-ascom-campi"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Contato%20-%20campi.png"
+                            alt="Contato dos Campi"></a></div>
+            </div>
+        </div>
+
+        <div class="section" id="manuais-normativos-logotipo">
+            <h3>Manuais, Normativos e Logotipo</h3>
+            <div>Aqui estão os manuais e diretrizes que guiam os serviços prestados pela Dicom. Os documentos apresentam
+                os critérios, orientações e prazos para a elaboração de materiais jornalísticos, gráficos (digitais e
+                impressos) e audiovisuais. Também há instruções sobre o uso e aplicação da identidade visual do
+                IFSULDEMINAS, a redação de textos oficiais e o planejamento e realização de eventos online e
+                presenciais.<br>
+
+                Clique abaixo para acessar e baixar os documentos e arquivos relevantes:
+            </div><br>
+            <div class="button-container">
+                <div><a href="https://portal.ifsuldeminas.edu.br/index.php/dicom/6569-manuais-dicom"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Manuais.png"
+                            alt="Manuais"></a></div>
+                <div><a href="https://portal.ifsuldeminas.edu.br/index.php/dicom/6570-normativos-dicom"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Normativos.png"
+                            alt="Normativos"></a></div>
+                <div style="justify-content: center;"><a
+                        href="https://portal.ifsuldeminas.edu.br/index.php/dicom/6571-logotipos-dicom"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Logotipos.png"
+                            alt="Logotipos"></a></div>
+            </div>
+        </div>
+
+        <div class="section" id="termos-uso-imagem">
+            <h3>
+                Termos de Autorização/Responsabilidade
+            </h3>
+            <div>
+                Bem-vindo(a) aos nossos Termos de Autorização/Responsabilidade! Aqui, você encontra tudo o que precisa
+                saber sobre o
+                uso de imagens e outros conteúdos da nossa Diretoria de Comunicação. Nosso objetivo é garantir que
+                você possa utilizar os recursos de forma clara e segura.
+            </div><br>
+            <div>
+                Clique nos botões abaixo para acessar os documentos e formulários necessários. Se restar alguma dúvida,
+                nossa equipe está sempre pronta para ajudá-lo!
+            </div><br>
+            <div class="button-container">
+                <div><a
+                        href="https://portal.ifsuldeminas.edu.br/images/PDFs/comunicacao/Termo_de_Autorizacao_Uso_de_Imagem_2023.pdf"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Autorizacao-imagem.png"
+                            alt="Autorização do Uso de Imagem"></a></div>
+                <div><a
+                        href="https://portal.ifsuldeminas.edu.br/images/PDFs/comunicacao/Autorizacao_Imagem_Palestrante.odt"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Autorizacao-palestrante.png"
+                            alt="Autorização do Uso de Imagem - Palestrante"></a></div>
+                <div><a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSe1jT3LrI6ql1_Sxy5VtSme3AYkINdwkcRd8A7CIpduSfXKYw/viewform"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Responsabilidade%20no%20emprestimo.png"
+                            alt="Responsabilidade no empréstimo de equipamento"></a></div>
+            </div>
+        </div>
+
+        <div class="section" id="solicitacao-servicos">
+            <h3>Serviços da DICOM</h3>
+            <div>
+                Aqui é o seu ponto de partida para solicitar serviços da nossa Diretoria de Comunicação! Se você
+                precisa de apoio, está no lugar certo. Para solicitar o nosso apoio ou serviços, clique no botão Apoio
+                da Dicom.
+            </div><br>
+            <div>
+                Temos o prazer de apresentar o "Assina IFSULDEMINAS", nosso novo gerador de assinatura institucional.
+                Com ele, você pode criar assinaturas personalizadas e profissionais para seu e-mail, facilitando a
+                comunicação e reforçando a identidade visual da nossa instituição. Clique no botão abaixo do Assina
+                IFSULDEMINAS e comece a criar a sua!
+            </div><br>
+            <div>
+                Nossa equipe está pronta para ajudar e garantir que suas necessidades sejam atendidas da melhor maneira
+                possível. Qualquer dúvida ou questão, é só entrar em contato. Estamos aqui para tornar tudo mais fácil
+                para você!
+            </div><br>
+            <div class="button-container">
+                <a href="https://portal.ifsuldeminas.edu.br/index.php/dicom/6573-formularios-de-servico-dicom">
+                    <img src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Apoio%20da%20DICOM.png"
+                        alt="Apoio da Dicom">
+                </a>
+                <a href="https://sites.google.com/ifsuldeminas.edu.br/assina-ifsuldeminas">
+                    <img src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Assina%20IFSULDEMINAS.png"
+                        alt="Assina IFSULDEMINAS">
+                </a>
+            </div>
+        </div>
+
+        <div class="section" id="imprensa">
+            <h3>
+                Imprensa
+            </h3>
+            <div>
+                <p>Bem-vindo à nossa Sala de Imprensa! Neste espaço, você encontra tudo o que precisa para se manter
+                    atualizado e em contato com o que acontece no IFSULDEMINAS. De releases a pautas e galerias de
+                    imagens, estamos aqui para tornar sua vida mais fácil.</p>
+            </div><br>
+            <div class="button-container">
+                <div><a href="https://forms.gle/niqRrCr9Eib7nD3V9"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Cadastro%20releases.png"
+                            alt="Cadastro para Receber Releases"></a></div>
+                <div><a
+                        href="https://portal.ifsuldeminas.edu.br/images/mat%C3%A9rias_2020/Marco/banco_de_pautas/Banco_de_Pautas_-_Caf%C3%A9_com_Imprensa_completo_word.pdf"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Banco%20de%20pautas.png"
+                            alt="Banco de Pautas"></a></div>
+                <div><a href="https://portal.ifsuldeminas.edu.br/index.php/dicom/6575-galeria-dicom"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Galeria%20de%20Imagens.png"
+                            alt="Galeria de Imagens"></a></div>
+                <div><a href="https://portal.ifsuldeminas.edu.br/index.php/ifsuldeminas-na-midia"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/If%20na%20midia.png"
+                            alt="IFSULDEMINAS na Mídia"></a></div>
+                <div><a href="https://portal.ifsuldeminas.edu.br/index.php/boletins-eletronicos"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Boletim%20eletronico.png"
+                            alt="Boletins eletrônicos"></a></div>
+                <div><a href="https://portal.ifsuldeminas.edu.br/index.php/portal-de-publicacoes"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/Bot%C3%B5es/Comunica%C3%A7%C3%A3o/bot%C3%B5es%20-%20comunica%C3%A7%C3%A3o/Portal%20de%20Publicacoes.png"
+                            alt="Portal de Publicações"></a></div>
+            </div>
+        </div>
+
+        <div class="section" id="redes-sociais">
+            <h3>Redes Sociais</h3>
+            <p>O IFSULDEMINAS quer te ouvir! Conheça nossos canais oficiais de comunicação. Você sabia que o
+                IFSULDEMINAS disponibiliza diversos canais oficiais de comunicação para a comunidade interna e externa?
+                Dos e-mails institucionais, passando pelo <a href="portal.ifsuldeminas.edu.br">site</a> até as redes
+                sociais como Instagram, Facebook, LinkedIn, X e Youtube, tudo é feito pensando em estreitar os laços com
+                a
+                sociedade, com clareza e prestação de serviços.</p><br>
+            <div class="social-media-container">
+                <div class="social-links">
+                    <a href="https://www.facebook.com/IFSULDEMINAS"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/facebook_ok.png"
+                            alt="Facebook"></a>
+                    <a href="https://www.instagram.com/ifsuldeminas/"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/instagram_ok.png"
+                            alt="Instagram"></a>
+                    <a href="https://www.linkedin.com/school/if-sul-de-minas/"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/linkedin_ok.png"
+                            alt="LinkedIn"></a>
+                    <a href="https://x.com/ifsuldeminas"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/twitter_x.png"
+                            alt="X"></a>
+                    <a href="https://www.youtube.com/@TVIFSULDEMINAS"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/youtube_ok.png"
+                            alt="YouTube"></a>
+
+                </div>
+            </div>
+            <div class="social-media-container-mobile" style="margin-top: 15px;">
+                <div class="social-links" style="margin-bottom: 15px;">
+                    <a href="https://www.facebook.com/IFSULDEMINAS"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/facebook_ok.png"
+                            alt="Facebook"></a>
+                    <a href="https://www.instagram.com/ifsuldeminas/"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/instagram_ok.png"
+                            alt="Instagram"></a>
+                    <a href="https://www.linkedin.com/school/if-sul-de-minas/"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/linkedin_ok.png"
+                            alt="LinkedIn"></a>
+                    <a href="https://x.com/ifsuldeminas"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/twitter_x.png"
+                            alt="X"></a>
+                    <a href="https://www.youtube.com/@TVIFSULDEMINAS"><img
+                            src="https://portal.ifsuldeminas.edu.br/images/comunica%C3%A7%C3%A3o/youtube_ok.png"
+                            alt="YouTube"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll('.section');
+            const menuLinks = document.querySelectorAll('.custom-menu a');
+            const homeLink = document.querySelector('.page-title-image');
+            const initialTarget = localStorage.getItem('imageClicked'); // Verifica se o clique na imagem foi armazenado
+
+            // Função para ativar uma seção e rolar a tela
+            function activateSection(targetId, shouldScroll = true) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    if (shouldScroll) {
+                        const isDicomReitoria = targetId === "dicom-reitoria";
+                        const targetOffset = targetSection.offsetTop;
+
+                        if (isDicomReitoria) {
+                            window.scrollTo({
+                                top: targetOffset - document.querySelector('.page-title').offsetHeight,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            const sectionHeight = targetSection.offsetHeight;
+                            const windowHeight = window.innerHeight;
+                            const scrollPosition = targetOffset - ((windowHeight - sectionHeight) / 2);
+                            window.scrollTo({
+                                top: scrollPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }
+            }
+
+            // Ação ao clicar na imagem "Home"
+            homeLink.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Marca que a imagem foi clicada
+                localStorage.setItem('imageClicked', true);
+
+                // Rola para o topo e depois redireciona para o link
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                setTimeout(function () {
+                    window.location.href = homeLink.getAttribute('href');
+                }, 500); // Atraso de 500 ms para a rolagem terminar
+            });
+
+            // Ação ao clicar em qualquer link do menu
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('data-target');
+                    activateSection(targetId); // Ativa a seção com rolagem suave
+                });
+            });
+
+            // Restaura a seção de boas-vindas ao voltar à página SOMENTE se a imagem foi clicada
+            if (initialTarget) {
+                localStorage.removeItem('imageClicked'); // Remove a indicação de clique na imagem
+                activateSection('target-div', false); // Ativa a seção sem rolar
+                window.scrollTo({ top: 0, behavior: 'auto' });
+            }
+        });
+    </script>
